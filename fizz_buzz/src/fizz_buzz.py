@@ -1,6 +1,6 @@
 
 
 def fizz_buzz(number: int) -> str:
-    if number == 3 or number == 6:
+    if number in [3, 6, 9]:
         return "Fizz"
     return str(number)
