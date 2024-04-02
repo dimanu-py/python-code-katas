@@ -11,3 +11,7 @@ def test_is_not_leap_year(year_number: int):
 @pytest.mark.parametrize("year_number", [2016, 2020, 2024])
 def test_leap_year_divisible_by_4(year_number: int):
     assert leap_year(year_number) == True
+
+
+def test_leap_year_divisible_by_400():
+    assert leap_year(2000) == True
