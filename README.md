@@ -76,6 +76,7 @@ pdm run pytest tests/kata_name
 ## Katas
 
 - [ ] [FizzBuzz](fizz_buzz/README.md)
+- [ ] [Leap Year](leap_year/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
 
