@@ -3,8 +3,9 @@ import pytest
 from leap_year.src.leap_year import leap_year
 
 
-def test_is_not_leap_year():
-    assert leap_year(2015) == False
+@pytest.mark.parametrize("year_number", [1993, 1997, 2001, 2005, 2009])
+def test_is_not_leap_year(year_number: int):
+    assert leap_year(year_number) == False
 
 
 @pytest.mark.parametrize("year_number", [2016, 2020, 2024])
