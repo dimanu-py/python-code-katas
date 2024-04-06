@@ -35,9 +35,9 @@ class GildedRoseItem(ABC, Item):
         if self.quality < self.MAXIMUM_QUALITY:
             self.quality = self.quality + 1
 
-    def decrease_quality(self) -> None:
+    def decrease_quality(self, amount: int = 1) -> None:
         if self.quality > self.MINIMUM_QUALITY:
-            self.quality = self.quality - 1
+            self.quality = self.quality - amount
 
     def is_expired(self):
         return self.sell_in < 0
@@ -85,8 +85,6 @@ class Sulfuras(GildedRoseItem):
 class Conjured(GildedRoseItem):
 
     def update_quality(self) -> None:
-        self.decrease_quality()
-        self.decrease_quality()
+        self.decrease_quality(amount=2)
         if self.is_expired():
-            self.decrease_quality()
-            self.decrease_quality()
+            self.decrease_quality(amount=2)
