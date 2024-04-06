@@ -1,19 +1,11 @@
+from gilded_rose.src.items import GildedRoseItem, Item
+
 BACKSTAGE_PASSES = "Backstage passes"
 AGED_BRIE = "Aged Brie"
 SULFURA = "Sulfuras, Hand of Ragnaros"
 
 MAXIMUM_QUALITY = 50
 MINIMUM_QUALITY = 0
-
-
-class Item:
-    def __init__(self, name: str, sell_in: int, quality: int) -> None:
-        self.name = name
-        self.sell_in = sell_in
-        self.quality = quality
-
-    def __repr__(self):
-        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
 
 class GildedRose(object):
@@ -25,7 +17,7 @@ class GildedRose(object):
         for item in self.items:
             self.process_item(item)
 
-    def process_item(self, item: Item) -> None:
+    def process_item(self, item: Item | GildedRoseItem) -> None:
 
         if item.name == SULFURA:
             return
@@ -45,10 +37,7 @@ class GildedRose(object):
             if item.sell_in < 0:
                 item.quality = MINIMUM_QUALITY
         else:
-            self.decrease_quality(item)
-            item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                self.decrease_quality(item)
+            item.process_item()
 
     def increase_quality(self, item: Item) -> None:
         if item.quality < MAXIMUM_QUALITY:
