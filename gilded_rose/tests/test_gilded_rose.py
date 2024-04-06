@@ -13,7 +13,7 @@ class TestGildedRose:
         items = [NormalItem(NORMAL_ITEM, 10, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 9
 
@@ -21,7 +21,7 @@ class TestGildedRose:
         items = [NormalItem(NORMAL_ITEM, 10, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].sell_in == 9
 
@@ -29,7 +29,7 @@ class TestGildedRose:
         items = [NormalItem(NORMAL_ITEM, 0, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 8
 
@@ -37,7 +37,7 @@ class TestGildedRose:
         items = [NormalItem(NORMAL_ITEM, 10, 0)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 0
 
@@ -45,7 +45,7 @@ class TestGildedRose:
         items = [AgedBrie(AGED_BRIE, 10, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 11
 
@@ -53,7 +53,7 @@ class TestGildedRose:
         items = [AgedBrie(AGED_BRIE, 10, 50)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 50
 
@@ -61,7 +61,7 @@ class TestGildedRose:
         items = [AgedBrie(AGED_BRIE, 10, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].sell_in == 9
 
@@ -69,7 +69,7 @@ class TestGildedRose:
         items = [AgedBrie(AGED_BRIE, 0, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 12
 
@@ -77,7 +77,7 @@ class TestGildedRose:
         items = [Sulfuras(SULFURAS, 10, 80)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 80
 
@@ -85,7 +85,7 @@ class TestGildedRose:
         items = [Sulfuras(SULFURAS, 10, 80)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].sell_in == 10
 
@@ -93,7 +93,7 @@ class TestGildedRose:
         items = [BackstagePasses(BACKSTAGE_PASSES, 11, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 11
 
@@ -101,7 +101,7 @@ class TestGildedRose:
         items = [BackstagePasses(BACKSTAGE_PASSES, 10, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 12
 
@@ -109,7 +109,7 @@ class TestGildedRose:
         items = [BackstagePasses(BACKSTAGE_PASSES, 5, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 13
 
@@ -117,7 +117,7 @@ class TestGildedRose:
         items = [BackstagePasses(BACKSTAGE_PASSES, 0, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].quality == 0
 
@@ -125,6 +125,6 @@ class TestGildedRose:
         items = [BackstagePasses(BACKSTAGE_PASSES, 10, 10)]
         gilded_rose = GildedRose(items)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_inventory()
 
         assert items[0].sell_in == 9
