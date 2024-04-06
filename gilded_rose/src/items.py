@@ -69,3 +69,14 @@ class BackstagePasses(GildedRoseItem):
             self.increase_quality()
         if self.is_expired():
             self.quality = self.MINIMUM_QUALITY
+
+
+class Sulfuras(GildedRoseItem):
+
+    def update_quality(self) -> None:
+        """Sulfuras never changes its quality."""
+        pass
+
+    def decrease_sell_in_day(self) -> None:
+        """Sulfuras never changes its sell in day."""
+        pass
