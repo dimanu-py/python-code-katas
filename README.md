@@ -77,6 +77,7 @@ pdm run pytest tests/kata_name
 
 - [ ] [FizzBuzz](fizz_buzz/README.md)
 - [ ] [Leap Year](leap_year/README.md)
+- [ ] [Gilded Rose Refactoring Kata](gilded_rose/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
 
