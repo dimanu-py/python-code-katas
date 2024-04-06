@@ -61,3 +61,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].sell_in == 9
+
+    def test_aged_brine_quality_increases_twice_as_fast_after_sell_in_date(self):
+        items = [Item("Aged Brie", 0, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].quality == 12
