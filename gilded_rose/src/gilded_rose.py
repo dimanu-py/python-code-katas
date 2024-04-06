@@ -26,14 +26,14 @@ class GildedRose(object):
                     self.decrease_quality(item)
         else:
             if item.quality < 50:
-                item.quality = item.quality + 1
+                self.increase_quality(item)
                 if item.name == "Backstage passes":
                     if item.sell_in < 11:
                         if item.quality < 50:
-                            item.quality = item.quality + 1
+                            self.increase_quality(item)
                     if item.sell_in < 6:
                         if item.quality < 50:
-                            item.quality = item.quality + 1
+                            self.increase_quality(item)
         if item.name != "Sulfuras, Hand of Ragnaros":
             item.sell_in = item.sell_in - 1
         if item.sell_in < 0:
@@ -46,7 +46,10 @@ class GildedRose(object):
                     item.quality = 0
             else:
                 if item.quality < 50:
-                    item.quality = item.quality + 1
+                    self.increase_quality(item)
+
+    def increase_quality(self, item: Item) -> None:
+        item.quality = item.quality + 1
 
     def decrease_quality(self, item: Item) -> None:
         item.quality = item.quality - 1
