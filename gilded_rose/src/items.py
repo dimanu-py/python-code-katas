@@ -80,3 +80,13 @@ class Sulfuras(GildedRoseItem):
     def decrease_sell_in_day(self) -> None:
         """Sulfuras never changes its sell in day."""
         pass
+
+
+class Conjured(GildedRoseItem):
+
+    def update_quality(self) -> None:
+        self.decrease_quality()
+        self.decrease_quality()
+        if self.is_expired():
+            self.decrease_quality()
+            self.decrease_quality()
