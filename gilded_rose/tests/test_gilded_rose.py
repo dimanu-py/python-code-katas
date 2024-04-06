@@ -120,3 +120,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].quality == 0
+
+    def test_backstage_passes_sell_in_day_decreases_every_day(self):
+        items = [Item(BACKSTAGE_PASSES, 10, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].sell_in == 9
