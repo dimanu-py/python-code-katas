@@ -1,6 +1,5 @@
 from gilded_rose.src.gilded_rose import Item, GildedRose
-from gilded_rose.src.items import NormalItem
-
+from gilded_rose.src.items import NormalItem, AgedBrie
 
 BACKSTAGE_PASSES = "Backstage passes"
 SULFURAS = "Sulfuras, Hand of Ragnaros"
@@ -43,7 +42,7 @@ class TestGildedRose:
         assert items[0].quality == 0
 
     def test_aged_brie_increases_quality_every_day(self):
-        items = [Item(AGED_BRIE, 10, 10)]
+        items = [AgedBrie(AGED_BRIE, 10, 10)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -51,7 +50,7 @@ class TestGildedRose:
         assert items[0].quality == 11
 
     def test_aged_brie_can_never_have_quality_over_50(self):
-        items = [Item(AGED_BRIE, 10, 50)]
+        items = [AgedBrie(AGED_BRIE, 10, 50)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -59,7 +58,7 @@ class TestGildedRose:
         assert items[0].quality == 50
 
     def test_aged_brie_sell_in_day_decreases_every_day(self):
-        items = [Item(AGED_BRIE, 10, 10)]
+        items = [AgedBrie(AGED_BRIE, 10, 10)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -67,7 +66,7 @@ class TestGildedRose:
         assert items[0].sell_in == 9
 
     def test_aged_brine_quality_increases_twice_as_fast_after_sell_in_date(self):
-        items = [Item(AGED_BRIE, 0, 10)]
+        items = [AgedBrie(AGED_BRIE, 0, 10)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()

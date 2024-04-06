@@ -23,10 +23,7 @@ class GildedRose(object):
             return
 
         if item.name == AGED_BRIE:
-            self.increase_quality(item)
-            item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                self.increase_quality(item)
+            item.process_item()
         elif item.name == BACKSTAGE_PASSES:
             self.increase_quality(item)
             if item.sell_in < 11:
