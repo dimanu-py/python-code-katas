@@ -48,12 +48,11 @@ class GildedRose(object):
             if item.name == "Aged Brie":
                 if item.quality < MAXIMUM_QUALITY:
                     self.increase_quality(item)
+            elif item.name == "Backstage passes":
+                item.quality = MINIMUM_QUALITY
             else:
-                if item.name == "Backstage passes":
-                    item.quality = MINIMUM_QUALITY
-                else:
-                    if item.quality > MINIMUM_QUALITY:
-                        self.decrease_quality(item)
+                if item.quality > MINIMUM_QUALITY:
+                    self.decrease_quality(item)
 
     def increase_quality(self, item: Item) -> None:
         item.quality = item.quality + 1
