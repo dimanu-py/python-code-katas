@@ -22,11 +22,7 @@ class GildedRose(object):
             self.process_item(item)
 
     def process_item(self, item: Item) -> None:
-        if item.name != "Aged Brie" and item.name != "Backstage passes":
-            if item.quality > MINIMUM_QUALITY:
-                if item.name != "Sulfuras, Hand of Ragnaros":
-                    self.decrease_quality(item)
-        else:
+        if item.name == "Aged Brie" or item.name == "Backstage passes":
             if item.quality < MAXIMUM_QUALITY:
                 self.increase_quality(item)
                 if item.name == "Backstage passes":
@@ -36,19 +32,27 @@ class GildedRose(object):
                     if item.sell_in < 6:
                         if item.quality < MAXIMUM_QUALITY:
                             self.increase_quality(item)
-        if item.name != "Sulfuras, Hand of Ragnaros":
+        else:
+            if item.quality > MINIMUM_QUALITY:
+                if item.name == "Sulfuras, Hand of Ragnaros":
+                    return
+                self.decrease_quality(item)
+        if item.name == "Sulfuras, Hand of Ragnaros":
+            pass
+        else:
             item.sell_in = item.sell_in - 1
         if item.sell_in < 0:
-            if item.name != "Aged Brie":
-                if item.name != "Backstage passes":
-                    if item.quality > MINIMUM_QUALITY:
-                        if item.name != "Sulfuras, Hand of Ragnaros":
-                            self.decrease_quality(item)
-                else:
-                    item.quality = MINIMUM_QUALITY
-            else:
+            if item.name == "Aged Brie":
                 if item.quality < MAXIMUM_QUALITY:
                     self.increase_quality(item)
+            else:
+                if item.name == "Backstage passes":
+                    item.quality = MINIMUM_QUALITY
+                else:
+                    if item.quality > MINIMUM_QUALITY:
+                        if item.name == "Sulfuras, Hand of Ragnaros":
+                            return
+                        self.decrease_quality(item)
 
     def increase_quality(self, item: Item) -> None:
         item.quality = item.quality + 1
