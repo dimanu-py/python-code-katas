@@ -1,3 +1,4 @@
+MINIMUM_QUALITY = 0
 
 
 class Item:
@@ -21,7 +22,7 @@ class GildedRose(object):
 
     def process_item(self, item: Item) -> None:
         if item.name != "Aged Brie" and item.name != "Backstage passes":
-            if item.quality > 0:
+            if item.quality > MINIMUM_QUALITY:
                 if item.name != "Sulfuras, Hand of Ragnaros":
                     self.decrease_quality(item)
         else:
@@ -39,11 +40,11 @@ class GildedRose(object):
         if item.sell_in < 0:
             if item.name != "Aged Brie":
                 if item.name != "Backstage passes":
-                    if item.quality > 0:
+                    if item.quality > MINIMUM_QUALITY:
                         if item.name != "Sulfuras, Hand of Ragnaros":
                             self.decrease_quality(item)
                 else:
-                    item.quality = 0
+                    item.quality = MINIMUM_QUALITY
             else:
                 if item.quality < 50:
                     self.increase_quality(item)
