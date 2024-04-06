@@ -1,3 +1,7 @@
+BACKSTAGE_PASSES = "Backstage passes"
+AGED_BRIE = "Aged Brie"
+SULFURA = "Sulfuras, Hand of Ragnaros"
+
 MAXIMUM_QUALITY = 50
 MINIMUM_QUALITY = 0
 
@@ -23,13 +27,13 @@ class GildedRose(object):
 
     def process_item(self, item: Item) -> None:
 
-        if item.name == "Sulfuras, Hand of Ragnaros":
+        if item.name == SULFURA:
             return
 
-        if item.name == "Aged Brie":
+        if item.name == AGED_BRIE:
             if item.quality < MAXIMUM_QUALITY:
                 self.increase_quality(item)
-        elif item.name == "Backstage passes":
+        elif item.name == BACKSTAGE_PASSES:
             if item.quality < MAXIMUM_QUALITY:
                 self.increase_quality(item)
             if item.sell_in < 11:
@@ -45,10 +49,10 @@ class GildedRose(object):
         item.sell_in = item.sell_in - 1
 
         if item.sell_in < 0:
-            if item.name == "Aged Brie":
+            if item.name == AGED_BRIE:
                 if item.quality < MAXIMUM_QUALITY:
                     self.increase_quality(item)
-            elif item.name == "Backstage passes":
+            elif item.name == BACKSTAGE_PASSES:
                 item.quality = MINIMUM_QUALITY
             else:
                 if item.quality > MINIMUM_QUALITY:
