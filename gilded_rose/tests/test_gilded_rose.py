@@ -45,3 +45,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].quality == 11
+
+    def test_aged_brie_can_never_have_quality_over_50(self):
+        items = [Item("Aged Brie", 10, 50)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].quality == 50
