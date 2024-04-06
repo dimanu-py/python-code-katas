@@ -46,3 +46,11 @@ class NormalItem(GildedRoseItem):
         self.decrease_quality()
         if self.sell_in < 0:
             self.decrease_quality()
+
+
+class AgedBrie(GildedRoseItem):
+
+    def update_quality(self) -> None:
+        self.increase_quality()
+        if self.sell_in < 0:
+            self.increase_quality()
