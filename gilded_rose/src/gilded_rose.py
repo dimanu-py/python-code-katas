@@ -20,7 +20,7 @@ class GildedRose(object):
     def process_item(self, item: Item | GildedRoseItem) -> None:
 
         if item.name == SULFURA:
-            return
+            item.process_item()
 
         if item.name == AGED_BRIE:
             item.process_item()
