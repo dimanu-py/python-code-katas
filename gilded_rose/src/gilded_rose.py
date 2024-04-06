@@ -39,8 +39,7 @@ class GildedRose(object):
             if item.sell_in < 6:
                 self.increase_quality(item)
         else:
-            if item.quality > MINIMUM_QUALITY:
-                self.decrease_quality(item)
+            self.decrease_quality(item)
 
         item.sell_in = item.sell_in - 1
 
@@ -50,12 +49,12 @@ class GildedRose(object):
             elif item.name == BACKSTAGE_PASSES:
                 item.quality = MINIMUM_QUALITY
             else:
-                if item.quality > MINIMUM_QUALITY:
-                    self.decrease_quality(item)
+                self.decrease_quality(item)
 
     def increase_quality(self, item: Item) -> None:
         if item.quality < MAXIMUM_QUALITY:
             item.quality = item.quality + 1
 
     def decrease_quality(self, item: Item) -> None:
-        item.quality = item.quality - 1
+        if item.quality > MINIMUM_QUALITY:
+            item.quality = item.quality - 1
