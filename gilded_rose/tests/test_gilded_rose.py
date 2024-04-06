@@ -79,3 +79,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].quality == 80
+
+    def test_legendary_item_sell_in_never_changes(self):
+        items = [Item(SULFURAS, 10, 80)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].sell_in == 10
