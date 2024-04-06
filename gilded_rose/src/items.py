@@ -38,3 +38,11 @@ class GildedRoseItem(ABC, Item):
     def decrease_quality(self) -> None:
         if self.quality > self.MINIMUM_QUALITY:
             self.quality = self.quality - 1
+
+
+class NormalItem(GildedRoseItem):
+
+    def update_quality(self) -> None:
+        self.decrease_quality()
+        if self.sell_in < 0:
+            self.decrease_quality()
