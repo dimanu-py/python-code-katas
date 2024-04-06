@@ -42,9 +42,9 @@ class TestNormalItem:
         assert items[0].quality == 0
 
 
-class TestGildedRose:
+class TestAgedBrieItem:
 
-    def test_aged_brie_increases_quality_every_day(self):
+    def test_quality_increases_every_day(self):
         items = [AgedBrie(AGED_BRIE, 10, 10)]
         gilded_rose = GildedRose(items)
 
@@ -52,7 +52,7 @@ class TestGildedRose:
 
         assert items[0].quality == 11
 
-    def test_aged_brie_can_never_have_quality_over_50(self):
+    def test_quality_can_not_be_over_50(self):
         items = [AgedBrie(AGED_BRIE, 10, 50)]
         gilded_rose = GildedRose(items)
 
@@ -60,7 +60,7 @@ class TestGildedRose:
 
         assert items[0].quality == 50
 
-    def test_aged_brie_sell_in_day_decreases_every_day(self):
+    def test_sell_in_day_decreases_every_day(self):
         items = [AgedBrie(AGED_BRIE, 10, 10)]
         gilded_rose = GildedRose(items)
 
@@ -68,13 +68,16 @@ class TestGildedRose:
 
         assert items[0].sell_in == 9
 
-    def test_aged_brine_quality_increases_twice_as_fast_after_sell_in_date(self):
+    def test_quality_increases_twice_as_fast_after_sell_in_date(self):
         items = [AgedBrie(AGED_BRIE, 0, 10)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.process_inventory()
 
         assert items[0].quality == 12
+
+
+class TestGildedRose:
 
     def test_legendary_item_quality_never_changes(self):
         items = [Sulfuras(SULFURAS, 10, 80)]
