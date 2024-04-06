@@ -96,3 +96,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].quality == 11
+
+    def test_backstage_passes_quality_increases_by_2_when_sell_in_date_is_10_or_less(self):
+        items = [Item(BACKSTAGE_PASSES, 10, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].quality == 12
