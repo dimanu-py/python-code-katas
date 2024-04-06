@@ -27,3 +27,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].quality == 8
+
+    def test_quality_of_an_item_is_never_negative(self):
+        items = [Item("foo", 10, 0)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].quality == 0
