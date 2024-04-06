@@ -1,6 +1,7 @@
 
 from gilded_rose.src.gilded_rose import Item, GildedRose
 
+BACKSTAGE_PASSES = "Backstage passes"
 SULFURAS = "Sulfuras, Hand of Ragnaros"
 AGED_BRIE = "Aged Brie"
 NORMAL_ITEM = "foo"
@@ -87,3 +88,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].sell_in == 10
+
+    def test_backstage_passes_quality_increases_by_1_when_sell_in_date_is_more_than_10(self):
+        items = [Item(BACKSTAGE_PASSES, 11, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].quality == 11
