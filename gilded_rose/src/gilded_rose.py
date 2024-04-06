@@ -26,16 +26,18 @@ class GildedRose(object):
         if item.name == "Sulfuras, Hand of Ragnaros":
             return
 
-        if item.name == "Aged Brie" or item.name == "Backstage passes":
+        if item.name == "Aged Brie":
             if item.quality < MAXIMUM_QUALITY:
                 self.increase_quality(item)
-                if item.name == "Backstage passes":
-                    if item.sell_in < 11:
-                        if item.quality < MAXIMUM_QUALITY:
-                            self.increase_quality(item)
-                    if item.sell_in < 6:
-                        if item.quality < MAXIMUM_QUALITY:
-                            self.increase_quality(item)
+        elif item.name == "Backstage passes":
+            if item.quality < MAXIMUM_QUALITY:
+                self.increase_quality(item)
+            if item.sell_in < 11:
+                if item.quality < MAXIMUM_QUALITY:
+                    self.increase_quality(item)
+            if item.sell_in < 6:
+                if item.quality < MAXIMUM_QUALITY:
+                    self.increase_quality(item)
         else:
             if item.quality > MINIMUM_QUALITY:
                 self.decrease_quality(item)
