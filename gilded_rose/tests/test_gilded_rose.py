@@ -7,9 +7,9 @@ AGED_BRIE = "Aged Brie"
 NORMAL_ITEM = "foo"
 
 
-class TestGildedRose:
+class TestNormalItem:
 
-    def test_normal_item_decreases_quality_every_day(self):
+    def test_quality_decreases_every_day(self):
         items = [NormalItem(NORMAL_ITEM, 10, 10)]
         gilded_rose = GildedRose(items)
 
@@ -17,7 +17,7 @@ class TestGildedRose:
 
         assert items[0].quality == 9
 
-    def test_normal_item_decreases_sell_in_every_day(self):
+    def test_sell_in_day_ecreases_every_day(self):
         items = [NormalItem(NORMAL_ITEM, 10, 10)]
         gilded_rose = GildedRose(items)
 
@@ -25,7 +25,7 @@ class TestGildedRose:
 
         assert items[0].sell_in == 9
 
-    def test_normal_item_decreases_quality_twice_as_fast_after_sell_in_date(self):
+    def test_quality_decreases_twice_as_fast_after_sell_in_date(self):
         items = [NormalItem(NORMAL_ITEM, 0, 10)]
         gilded_rose = GildedRose(items)
 
@@ -33,13 +33,16 @@ class TestGildedRose:
 
         assert items[0].quality == 8
 
-    def test_quality_of_an_item_is_never_negative(self):
+    def test_quality_is_never_negative(self):
         items = [NormalItem(NORMAL_ITEM, 10, 0)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.process_inventory()
 
         assert items[0].quality == 0
+
+
+class TestGildedRose:
 
     def test_aged_brie_increases_quality_every_day(self):
         items = [AgedBrie(AGED_BRIE, 10, 10)]
