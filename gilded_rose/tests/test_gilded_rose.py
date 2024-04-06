@@ -77,9 +77,9 @@ class TestAgedBrieItem:
         assert items[0].quality == 12
 
 
-class TestGildedRose:
+class TestSulfurasItem:
 
-    def test_legendary_item_quality_never_changes(self):
+    def test_quality_never_changes(self):
         items = [Sulfuras(SULFURAS, 10, 80)]
         gilded_rose = GildedRose(items)
 
@@ -87,13 +87,17 @@ class TestGildedRose:
 
         assert items[0].quality == 80
 
-    def test_legendary_item_sell_in_never_changes(self):
+    def test__sell_in_never_changes(self):
         items = [Sulfuras(SULFURAS, 10, 80)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.process_inventory()
 
         assert items[0].sell_in == 10
+
+
+
+class TestGildedRose:
 
     def test_backstage_passes_quality_increases_by_1_when_sell_in_date_is_more_than_10(self):
         items = [BackstagePasses(BACKSTAGE_PASSES, 11, 10)]
