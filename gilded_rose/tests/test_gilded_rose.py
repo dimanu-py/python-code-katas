@@ -1,6 +1,7 @@
 
 from gilded_rose.src.gilded_rose import Item, GildedRose
 
+SULFURAS = "Sulfuras, Hand of Ragnaros"
 AGED_BRIE = "Aged Brie"
 NORMAL_ITEM = "foo"
 
@@ -70,3 +71,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].quality == 12
+
+    def test_legendary_item_quality_never_changes(self):
+        items = [Item(SULFURAS, 10, 80)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].quality == 80
