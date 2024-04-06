@@ -19,3 +19,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert items[0].sell_in == 9
+
+    def test_normal_item_decreases_quality_twice_as_fast_after_sell_in_date(self):
+        items = [Item("foo", 0, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        assert items[0].quality == 8
