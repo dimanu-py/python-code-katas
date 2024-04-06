@@ -1,5 +1,5 @@
-from gilded_rose.src.gilded_rose import Item, GildedRose
-from gilded_rose.src.items import NormalItem, AgedBrie, BackstagePasses, Sulfuras
+from gilded_rose.src.gilded_rose import GildedRose
+from gilded_rose.src.items import NormalItem, AgedBrie, BackstagePasses, Sulfuras, Conjured
 
 BACKSTAGE_PASSES = "Backstage passes"
 SULFURAS = "Sulfuras, Hand of Ragnaros"
@@ -137,3 +137,30 @@ class TestBackstagePassesItem:
         gilded_rose.process_inventory()
 
         assert items[0].sell_in == 9
+
+
+class TestConjuredItem:
+
+    def test_quality_decreases_twice_as_fast(self):
+        items = [Conjured("Conjured", 10, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.process_inventory()
+
+        assert items[0].quality == 8
+
+    def test_sell_in_day_decreases_every_day(self):
+        items = [Conjured("Conjured", 10, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.process_inventory()
+
+        assert items[0].sell_in == 9
+
+    def test_quality_decreases_twice_as_fast_after_sell_in_date(self):
+        items = [Conjured("Conjured", 0, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.process_inventory()
+
+        assert items[0].quality == 6
