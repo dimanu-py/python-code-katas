@@ -16,7 +16,7 @@ class ShoppingCart:
         return sum(self.prices)
 
     def has_discount(self) -> bool:
-        return self.discount_available
+        return any(price >= 100 for price in self.prices)
 
     def number_of_products(self) -> int:
         return len(self.prices)
