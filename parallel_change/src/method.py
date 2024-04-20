@@ -5,8 +5,9 @@ class AuthenticationService:
         return _id == 12345
 
     def is_authenticated_with_role(self, role: str, user_id: int) -> bool:
-        return True
-
+        if role == "admin":
+            return user_id == 12345
+        return False
 
 class AuthenticationClient:
     def __init__(self, authentication_service: AuthenticationService) -> None:
