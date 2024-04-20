@@ -3,6 +3,7 @@
 class ShoppingCart:
     price = 0
     number_products: int = 0
+    discount_available: bool = False
 
     '''
     the goal is to remove the field above, using a list of prices instead:
@@ -11,6 +12,9 @@ class ShoppingCart:
     '''
 
     def add(self, price: float) -> None:
+        if price >= 100:
+            self.discount_available = True
+
         self.price += price
         self.number_products += 1
 
@@ -18,7 +22,7 @@ class ShoppingCart:
         return self.price
 
     def has_discount(self) -> bool:
-        return self.price >= 100
+        return self.discount_available
 
     def number_of_products(self) -> int:
         return self.number_products
