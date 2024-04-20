@@ -2,6 +2,7 @@
 
 class ShoppingCart:
     price = 0
+    number_products: int = 0
 
     '''
     the goal is to remove the field above, using a list of prices instead:
@@ -11,6 +12,7 @@ class ShoppingCart:
 
     def add(self, price: float) -> None:
         self.price = price
+        self.number_products += 1
 
     def calculate_total_price(self) -> float:
         return self.price
@@ -19,7 +21,7 @@ class ShoppingCart:
         return self.price >= 100
 
     def number_of_products(self) -> int:
-        return 1
+        return self.number_products
 
 
 class SomeConsumer:
