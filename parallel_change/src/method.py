@@ -1,8 +1,25 @@
+import warnings
+import functools
+
+
+def deprecated(func):
+    """Marks a functions as deprecated.
+
+    Prints a warning being emitted when the function is used.
+    """
+
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        warnings.warn(f"Function {func.__name__} is deprecated. Will be substituted by is_authenticated_with_role", category=DeprecationWarning, stacklevel=2)
+        return func(*args, **kwargs)
+    return wrapper
 
 
 class AuthenticationService:
+
+    @deprecated
     def is_authenticated(self, _id: int) -> bool:
-        return _id == 12345
+        return self.is_authenticated_with_role("admin", _id)
 
     def is_authenticated_with_role(self, role: str, user_id: int) -> bool:
         if role == "admin":
