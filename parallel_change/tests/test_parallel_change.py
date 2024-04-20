@@ -49,3 +49,15 @@ class TestShoppingCart:
         shopping_cart.add(20)
 
         assert shopping_cart.calculate_total_price() == 30
+
+    def test_has_discount_when_cart_has_at_least_one_premium_item(self, shopping_cart):
+        shopping_cart.add(200)
+        shopping_cart.add(10)
+
+        assert shopping_cart.has_discount() == True
+
+    def test_discount_is_not_applied_if_sum_of_items_is_greater_than_100(self, shopping_cart):
+        shopping_cart.add(50)
+        shopping_cart.add(50)
+
+        assert shopping_cart.has_discount() == False
