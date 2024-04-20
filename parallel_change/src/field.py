@@ -14,6 +14,7 @@ class ShoppingCart:
 
         self.price += price
         self.number_products += 1
+        self.prices.append(price)
 
     def calculate_total_price(self) -> float:
         return self.price
