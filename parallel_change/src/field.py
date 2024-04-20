@@ -5,11 +5,8 @@ class ShoppingCart:
     number_products: int = 0
     discount_available: bool = False
 
-    '''
-    the goal is to remove the field above, using a list of prices instead:
-    def __init__(self):
+    def __init__(self) -> None:
         self.prices = []
-    '''
 
     def add(self, price: float) -> None:
         if price >= 100:
