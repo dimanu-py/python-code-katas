@@ -35,3 +35,11 @@ class TestShoppingCart:
         shopping_cart = field.ShoppingCart()
         shopping_cart.add(10)
         assert shopping_cart.has_discount() == False
+
+    def test_cart_can_have_multiple_items(self):
+        shopping_cart = field.ShoppingCart()
+
+        shopping_cart.add(10)
+        shopping_cart.add(20)
+
+        assert shopping_cart.number_of_products() == 2
