@@ -43,3 +43,9 @@ class TestShoppingCart:
         shopping_cart.add(20)
 
         assert shopping_cart.number_of_products() == 2
+
+    def test_total_price_of_the_cart_is_total_of_items_price(self, shopping_cart):
+        shopping_cart.add(10)
+        shopping_cart.add(20)
+
+        assert shopping_cart.calculate_total_price() == 30
