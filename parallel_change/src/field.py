@@ -11,7 +11,7 @@ class ShoppingCart:
     '''
 
     def add(self, price: float) -> None:
-        self.price = price
+        self.price += price
         self.number_products += 1
 
     def calculate_total_price(self) -> float:
