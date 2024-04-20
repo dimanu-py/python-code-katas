@@ -15,7 +15,7 @@ class ShoppingCart:
         self.prices.append(price)
 
     def calculate_total_price(self) -> float:
-        return self.price
+        return sum(self.prices)
 
     def has_discount(self) -> bool:
         return self.discount_available
