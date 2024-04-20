@@ -15,6 +15,13 @@ class TestAuthenticator:
         normal_user_id = 11111
         assert service.is_authenticated(normal_user_id) == False
 
+    def test_administrator_role_is_always_authenticated(self):
+        service = method.AuthenticationService()
+
+        user_role, user_id = "admin", 12345
+
+        assert service.is_authenticated_with_role(user_role, user_id)
+
 
 class TestShoppingCart:
 
