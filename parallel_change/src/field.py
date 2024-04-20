@@ -23,7 +23,7 @@ class ShoppingCart:
         return self.discount_available
 
     def number_of_products(self) -> int:
-        return self.number_products
+        return len(self.prices)
 
 
 class SomeConsumer:
