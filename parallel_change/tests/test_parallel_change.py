@@ -5,16 +5,6 @@ from parallel_change.src import method, field
 
 class TestAuthenticator:
 
-    def test_administrator_is_always_authenticated(self):
-        service = method.AuthenticationService()
-        admin_id = 12345
-        assert service.is_authenticated(admin_id) == True
-
-    def test_normal_user_is_not_authenticated_initially(self):
-        service = method.AuthenticationService()
-        normal_user_id = 11111
-        assert service.is_authenticated(normal_user_id) == False
-
     def test_administrator_role_is_always_authenticated(self):
         service = method.AuthenticationService()
 

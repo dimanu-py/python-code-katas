@@ -17,10 +17,6 @@ def deprecated(func):
 
 class AuthenticationService:
 
-    @deprecated
-    def is_authenticated(self, _id: int) -> bool:
-        return self.is_authenticated_with_role("admin", _id)
-
     def is_authenticated_with_role(self, role: str, user_id: int) -> bool:
         if role == "admin":
             return user_id == 12345
@@ -31,13 +27,13 @@ class AuthenticationClient:
         self.authentication_service = authentication_service
 
     def run(self) -> None:
-        authenticated = self.authentication_service.is_authenticated(33)
+        authenticated = self.authentication_service.is_authenticated_with_role("user", 33)
         print("is authenticated: ", str(authenticated))
 
 
 class YetAnotherClient:
     def run(self) -> bool:
-        return AuthenticationService().is_authenticated(100)
+        return AuthenticationService().is_authenticated_with_role("user", 100)
 
 
 if __name__ == "__main__":
