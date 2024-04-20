@@ -2,7 +2,6 @@
 
 class ShoppingCart:
     price = 0
-    number_products: int = 0
     discount_available: bool = False
 
     def __init__(self) -> None:
@@ -13,7 +12,6 @@ class ShoppingCart:
             self.discount_available = True
 
         self.price += price
-        self.number_products += 1
         self.prices.append(price)
 
     def calculate_total_price(self) -> float:
