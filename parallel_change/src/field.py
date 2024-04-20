@@ -1,15 +1,11 @@
 
 
 class ShoppingCart:
-    discount_available: bool = False
 
     def __init__(self) -> None:
         self.prices = []
 
     def add(self, price: float) -> None:
-        if price >= 100:
-            self.discount_available = True
-
         self.prices.append(price)
 
     def calculate_total_price(self) -> float:
