@@ -5,7 +5,7 @@
 groups = ["default", "tests"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:a70b7a35055179b655e0b9e64bb67b6b5ca086b98e4e22625cc7581ef44d6547"
+content_hash = "sha256:45cb33b1eb1a1d73ab63f9d94a3b1c058d2048d577ddf4c62c9bcc789219b5d8"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -119,6 +119,20 @@ files = [
 ]
 
 [[package]]
+name = "doublex"
+version = "1.9.6.1"
+requires_python = ">=3.6"
+summary = "Python test doubles"
+groups = ["tests"]
+dependencies = [
+    "PyHamcrest",
+    "six",
+]
+files = [
+    {file = "doublex-1.9.6.1.tar.gz", hash = "sha256:48fbc633598eb913a6eb0c4694f8c040ba57bae9653d45643a84243e0c9f3268"},
+]
+
+[[package]]
 name = "empty-files"
 version = "0.0.9"
 requires_python = ">=3.7.1"
@@ -210,6 +224,17 @@ files = [
 ]
 
 [[package]]
+name = "pyhamcrest"
+version = "2.1.0"
+requires_python = ">=3.6"
+summary = "Hamcrest framework for matcher objects"
+groups = ["tests"]
+files = [
+    {file = "pyhamcrest-2.1.0-py3-none-any.whl", hash = "sha256:f6913d2f392e30e0375b3ecbd7aee79e5d1faa25d345c8f4ff597665dcac2587"},
+    {file = "pyhamcrest-2.1.0.tar.gz", hash = "sha256:c6acbec0923d0cb7e72c22af1926f3e7c97b8e8d69fc7498eabacaf7c975bd9c"},
+]
+
+[[package]]
 name = "pyperclip"
 version = "1.9.0"
 summary = "A cross-platform clipboard module for Python. (Only handles plain text for now.)"
@@ -271,6 +296,17 @@ dependencies = [
 files = [
     {file = "requests-2.32.3-py3-none-any.whl", hash = "sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6"},
     {file = "requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760"},
+]
+
+[[package]]
+name = "six"
+version = "1.16.0"
+requires_python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+summary = "Python 2 and 3 compatibility utilities"
+groups = ["tests"]
+files = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 
 [[package]]

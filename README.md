@@ -79,6 +79,7 @@ pdm run pytest tests/kata_name
 - [ ] [Leap Year](leap_year/README.md)
 - [ ] [Gilded Rose Refactoring Kata](gilded_rose/README.md)
 - [ ] [Parallel Change Refactoring Kata](parallel_change/README.md)
+- [ ] [Tire Pressure Kata](tire_pressure/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
 
