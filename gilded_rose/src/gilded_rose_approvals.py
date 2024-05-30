@@ -33,6 +33,8 @@ class GildedRose:
 
         if item.name == AGED_BRIE:
             self.increase_quality(item)
+            if item.sell_in < 0:
+                self.increase_quality(item)
 
         elif item.name == BACKSTAGE_PASSES:
             self.increase_quality(item)
@@ -41,15 +43,12 @@ class GildedRose:
                     self.increase_quality(item)
                 if item.sell_in < 5:
                     self.increase_quality(item)
+            if item.sell_in < 0:
+                item.quality = MIN_QUALITY
+
         else:
             self.decrease_quality(item)
-
-        if item.sell_in < 0:
-            if item.name == AGED_BRIE:
-                self.increase_quality(item)
-            elif item.name == BACKSTAGE_PASSES:
-                item.quality = MIN_QUALITY
-            else:
+            if item.sell_in < 0:
                 self.decrease_quality(item)
 
     def decrease_quality(self, item: Item) -> None:
