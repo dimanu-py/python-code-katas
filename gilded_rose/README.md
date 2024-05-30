@@ -6,6 +6,15 @@ These requirements and the initial state of the code are extracted from the orig
 
 [![Web](https://img.shields.io/badge/GitHub-emilybache-14a1f0?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/main?tab=MIT-1-ov-file)
 
+## Approval tests
+
+This testing strategy is ideal to test legacy code. With this library we can select a bunch of values we want to test 
+our function and compare the output with the expected value. If the output is different from the expected value, the test
+fails.
+
+As I use PyCharm as my main IDE, I have a custom reporter that uses IDE's diff tool to show me the output file. You can use it
+by changing the path inside [conftest.py](tests/conftest.py) file.
+
 ## Description
 
 Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a
