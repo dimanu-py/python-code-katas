@@ -1,1 +1,4 @@
 args: ('Common Item', 0, 0) => 'Common Item, sell_in: -1, quality: 0'
+args: ('Aged Brie', 0, 0) => 'Aged Brie, sell_in: -1, quality: 2'
+args: ('Backstage passes', 0, 0) => 'Backstage passes, sell_in: -1, quality: 0'
+args: ('Sulfuras, Hand of Ragnaros', 0, 0) => 'Sulfuras, Hand of Ragnaros, sell_in: 0, quality: 0'
