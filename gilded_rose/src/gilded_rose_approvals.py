@@ -32,25 +32,25 @@ class GildedRose:
         item.sell_in = item.sell_in - QUALITY_STEP
 
         if item.name == AGED_BRIE or item.name == BACKSTAGE_PASSES:
-            if item.quality < MAX_QUALITY:
-                item.quality = item.quality + QUALITY_STEP
-                if item.name == BACKSTAGE_PASSES:
-                    if item.sell_in < 10:
-                        if item.quality < MAX_QUALITY:
-                            item.quality = item.quality + QUALITY_STEP
-                    if item.sell_in < 5:
-                        if item.quality < MAX_QUALITY:
-                            item.quality = item.quality + QUALITY_STEP
+            self.increase_quality(item)
+            if item.name == BACKSTAGE_PASSES:
+                if item.sell_in < 10:
+                    self.increase_quality(item)
+                if item.sell_in < 5:
+                    self.increase_quality(item)
         else:
             if item.quality > MIN_QUALITY:
                 item.quality = item.quality - QUALITY_STEP
 
         if item.sell_in < 0:
             if item.name == AGED_BRIE:
-                if item.quality < MAX_QUALITY:
-                    item.quality = item.quality + QUALITY_STEP
+                self.increase_quality(item)
             elif item.name == BACKSTAGE_PASSES:
                 item.quality = MIN_QUALITY
             else:
                 if item.quality > MIN_QUALITY:
                     item.quality = item.quality - QUALITY_STEP
+
+    def increase_quality(self, item: Item) -> None:
+        if item.quality < MAX_QUALITY:
+            item.quality = item.quality + QUALITY_STEP
