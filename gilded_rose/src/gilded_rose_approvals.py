@@ -33,7 +33,7 @@ class GildedRose:
 
         if item.name == AGED_BRIE:
             self.increase_quality(item)
-            if item.sell_in < 0:
+            if self.item_has_expired(item):
                 self.increase_quality(item)
 
         elif item.name == BACKSTAGE_PASSES:
@@ -43,13 +43,16 @@ class GildedRose:
                     self.increase_quality(item)
                 if item.sell_in < 5:
                     self.increase_quality(item)
-            if item.sell_in < 0:
+            if self.item_has_expired(item):
                 item.quality = MIN_QUALITY
 
         else:
             self.decrease_quality(item)
-            if item.sell_in < 0:
+            if self.item_has_expired(item):
                 self.decrease_quality(item)
+
+    def item_has_expired(self, item: Item) -> bool:
+        return item.sell_in < 0
 
     def decrease_sell_in(self, item: Item) -> None:
         item.sell_in = item.sell_in - QUALITY_STEP
