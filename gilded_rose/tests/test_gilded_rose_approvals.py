@@ -1,7 +1,7 @@
-import pytest
-from approvaltests import verify
+from approvaltests import verify_all_combinations
 
 from gilded_rose.src.gilded_rose_approvals import Item, GildedRose
+
 
 def item_printer(item: Item) -> str:
     return f"{item.name}, sell_in: {item.sell_in}, quality: {item.quality}"
@@ -9,16 +9,18 @@ def item_printer(item: Item) -> str:
 
 class TestGildedRoseApprovals:
 
-    @pytest.mark.parametrize(
-        "name, sell_in, quality",
-        [("foo", 0, 0)],
-    )
-    def test_update_quality(self, name, sell_in, quality, pycharm_diff_reporter):
-        item_as_string = self.do_update_quality(name, quality, sell_in)
+    def test_update_quality(self, pycharm_diff_reporter):
+        name = ["Common Item"]
+        sell_in = [0]
+        quality = [0]
 
-        verify(item_as_string, reporter=pycharm_diff_reporter)
+        verify_all_combinations(
+            self.do_update_quality,
+            [name, sell_in, quality],
+            reporter=pycharm_diff_reporter
+        )
 
-    def do_update_quality(self, name: str, quality: int, sell_in: int) -> str:
+    def do_update_quality(self, name: str, sell_in: int, quality: int) -> str:
         item = [Item(name, sell_in, quality)]
         gilded_rose = GildedRose(item)
 
