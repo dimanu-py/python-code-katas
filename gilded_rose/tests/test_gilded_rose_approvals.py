@@ -11,7 +11,7 @@ class TestGildedRoseApprovals:
 
     def test_update_quality(self, pycharm_diff_reporter):
         name = ["Common Item", "Aged Brie", "Backstage passes", "Sulfuras, Hand of Ragnaros"]
-        sell_in = [0]
+        sell_in = [-1, 0]
         quality = [0]
 
         verify_all_combinations(
