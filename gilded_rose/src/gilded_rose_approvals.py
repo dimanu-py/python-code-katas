@@ -49,9 +49,8 @@ class GildedRose:
             if item.name == AGED_BRIE:
                 if item.quality < MAX_QUALITY:
                     item.quality = item.quality + QUALITY_STEP
+            elif item.name == BACKSTAGE_PASSES:
+                item.quality = MIN_QUALITY
             else:
-                if item.name == BACKSTAGE_PASSES:
-                    item.quality = MIN_QUALITY
-                else:
-                    if item.quality > MIN_QUALITY:
-                        item.quality = item.quality - QUALITY_STEP
+                if item.quality > MIN_QUALITY:
+                    item.quality = item.quality - QUALITY_STEP
