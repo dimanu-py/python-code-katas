@@ -1,1 +1,1 @@
-foo, sell_in: -1, quality: 0
+args: ('Common Item', 0, 0) => 'Common Item, sell_in: -1, quality: 0'
