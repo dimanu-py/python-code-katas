@@ -29,7 +29,7 @@ class GildedRose:
         if item.name == SULFURAS:
             return
 
-        item.sell_in = item.sell_in - QUALITY_STEP
+        self.decrease_sell_in(item)
 
         if item.name == AGED_BRIE:
             self.increase_quality(item)
@@ -50,6 +50,9 @@ class GildedRose:
             self.decrease_quality(item)
             if item.sell_in < 0:
                 self.decrease_quality(item)
+
+    def decrease_sell_in(self, item: Item) -> None:
+        item.sell_in = item.sell_in - QUALITY_STEP
 
     def decrease_quality(self, item: Item) -> None:
         if item.quality > MIN_QUALITY:
