@@ -24,7 +24,7 @@ class TestGildedRoseApprovals:
         item = [Item(name, sell_in, quality)]
         gilded_rose = GildedRose(item)
 
-        gilded_rose.update_quality()
+        gilded_rose.process_items()
 
         item_as_string = item_printer(item[0])
 
