@@ -26,11 +26,7 @@ class GildedRose:
             self.update_quality(item)
 
     def update_quality(self, item: Item) -> None:
-        if item.name != AGED_BRIE and item.name != BACKSTAGE_PASSES:
-            if item.quality > MIN_QUALITY:
-                if item.name != SULFURAS:
-                    item.quality = item.quality - QUALITY_STEP
-        else:
+        if item.name == AGED_BRIE or item.name == BACKSTAGE_PASSES:
             if item.quality < MAX_QUALITY:
                 item.quality = item.quality + QUALITY_STEP
                 if item.name == BACKSTAGE_PASSES:
@@ -40,16 +36,24 @@ class GildedRose:
                     if item.sell_in < 6:
                         if item.quality < MAX_QUALITY:
                             item.quality = item.quality + QUALITY_STEP
-        if item.name != SULFURAS:
+        else:
+            if item.quality > MIN_QUALITY:
+                if item.name == SULFURAS:
+                    return
+                item.quality = item.quality - QUALITY_STEP
+        if item.name == SULFURAS:
+            pass
+        else:
             item.sell_in = item.sell_in - QUALITY_STEP
         if item.sell_in < 0:
-            if item.name != AGED_BRIE:
-                if item.name != BACKSTAGE_PASSES:
-                    if item.quality > MIN_QUALITY:
-                        if item.name != SULFURAS:
-                            item.quality = item.quality - QUALITY_STEP
-                else:
-                    item.quality = MIN_QUALITY
-            else:
+            if item.name == AGED_BRIE:
                 if item.quality < MAX_QUALITY:
                     item.quality = item.quality + QUALITY_STEP
+            else:
+                if item.name == BACKSTAGE_PASSES:
+                    item.quality = MIN_QUALITY
+                else:
+                    if item.quality > MIN_QUALITY:
+                        if item.name == SULFURAS:
+                            return
+                        item.quality = item.quality - QUALITY_STEP
