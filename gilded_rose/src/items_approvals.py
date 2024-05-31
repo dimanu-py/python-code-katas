@@ -34,6 +34,9 @@ class GildedRoseItem(ABC, Item):
         if self.quality > MIN_QUALITY:
             self.quality = self.quality - QUALITY_STEP
 
+    def decrease_sell_in(self) -> None:
+        self.sell_in = self.sell_in - QUALITY_STEP
+
 
 class CommonItem(GildedRoseItem):
 
