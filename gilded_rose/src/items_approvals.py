@@ -23,7 +23,7 @@ class GildedRoseItem(ABC, Item):
     def update_quality(self) -> None:
         """Updates the quality of the item."""
 
-    def item_has_expired(self) -> bool:
+    def is_expired(self) -> bool:
         return self.sell_in < 0
 
     def increase_quality(self) -> None:
@@ -39,7 +39,7 @@ class CommonItem(GildedRoseItem):
 
     def update_quality(self) -> None:
         self.decrease_quality()
-        if self.item_has_expired():
+        if self.is_expired():
             self.decrease_quality()
 
 
@@ -47,7 +47,7 @@ class AgedBrieItem(GildedRoseItem):
 
     def update_quality(self) -> None:
         self.increase_quality()
-        if self.item_has_expired():
+        if self.is_expired():
             self.increase_quality()
 
 
@@ -59,7 +59,7 @@ class BackstagePassesItem(GildedRoseItem):
             self.increase_quality()
         if self.sell_in < 5:
             self.increase_quality()
-        if self.item_has_expired():
+        if self.is_expired():
             self.quality = MIN_QUALITY
 
 
