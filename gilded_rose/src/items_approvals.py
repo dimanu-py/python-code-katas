@@ -14,9 +14,19 @@ class Item:
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
 
+class NegativeQualityValueError(Exception):
+    """Negative quality value has been introduced."""
+
+    def __init__(self, quality: int):
+        self.message = f"Quality value cannot be negative. Current value: {quality}"
+        super().__init__(self.message)
+
+
 class GildedRoseItem(ABC, Item):
 
     def __init__(self, name: str, sell_in: int, quality: int) -> None:
+        if quality < MIN_QUALITY:
+            raise NegativeQualityValueError(quality)
         super().__init__(name, sell_in, quality)
 
     @abstractmethod
