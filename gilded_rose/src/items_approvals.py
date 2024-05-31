@@ -70,3 +70,6 @@ class SulfurasItem(GildedRoseItem):
 
     def update_quality(self) -> None:
         return
+
+    def decrease_sell_in(self) -> None:
+        return
