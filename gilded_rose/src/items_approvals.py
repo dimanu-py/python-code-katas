@@ -23,6 +23,10 @@ class GildedRoseItem(ABC, Item):
     def update_quality(self) -> None:
         """Updates the quality of the item."""
 
+    def process_item(self) -> None:
+        self.decrease_sell_in()
+        self.update_quality()
+
     def is_expired(self) -> bool:
         return self.sell_in < 0
 
