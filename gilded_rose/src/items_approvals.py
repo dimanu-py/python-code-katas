@@ -31,8 +31,7 @@ class GildedRoseItem(ABC, Item):
         return self.sell_in < 0
 
     def increase_quality(self) -> None:
-        if self.quality < MAX_QUALITY:
-            self.quality = self.quality + STEP
+        self.quality = min(self.quality + STEP, MAX_QUALITY)
 
     def decrease_quality(self) -> None:
         if self.quality > MIN_QUALITY:
