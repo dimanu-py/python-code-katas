@@ -30,16 +30,5 @@ class GildedRose:
         elif isinstance(item, BackstagePassesItem):
             item.update_quality()
 
-    def item_has_expired(self, item: Item) -> bool:
-        return item.sell_in < 0
-
     def decrease_sell_in(self, item: Item) -> None:
         item.sell_in = item.sell_in - QUALITY_STEP
-
-    def decrease_quality(self, item: Item) -> None:
-        if item.quality > MIN_QUALITY:
-            item.quality = item.quality - QUALITY_STEP
-
-    def increase_quality(self, item: Item) -> None:
-        if item.quality < MAX_QUALITY:
-            item.quality = item.quality + QUALITY_STEP
