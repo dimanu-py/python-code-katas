@@ -40,11 +40,11 @@ class GildedRoseItem(ABC, Item):
     def is_expired(self) -> bool:
         return self.sell_in < 0
 
-    def increase_quality(self) -> None:
-        self.quality = min(self.quality + STEP, MAX_QUALITY)
+    def increase_quality(self, amount: int = 1) -> None:
+        self.quality = min(self.quality + amount, MAX_QUALITY)
 
-    def decrease_quality(self) -> None:
-        self.quality = max(self.quality - STEP, MIN_QUALITY)
+    def decrease_quality(self, amount: int = 1) -> None:
+        self.quality = max(self.quality - amount, MIN_QUALITY)
 
     def decrease_sell_in(self) -> None:
         self.sell_in = self.sell_in - STEP
@@ -85,3 +85,11 @@ class SulfurasItem(GildedRoseItem):
 
     def decrease_sell_in(self) -> None:
         return
+
+
+class ConjuredItem(GildedRoseItem):
+
+    def update_quality(self) -> None:
+        self.decrease_quality(amount=2)
+        if self.is_expired():
+            self.decrease_quality(amount=2)
