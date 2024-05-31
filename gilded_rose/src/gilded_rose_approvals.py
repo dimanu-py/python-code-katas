@@ -1,4 +1,4 @@
-from gilded_rose_approvals.items import GildedRoseItem
+from gilded_rose.src.items_approvals import GildedRoseItem
 
 
 class GildedRose:
