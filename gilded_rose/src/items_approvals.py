@@ -41,3 +41,18 @@ class CommonItem(GildedRoseItem):
     def increase_quality(self) -> None:
         if self.quality < MAX_QUALITY:
             self.quality = self.quality + QUALITY_STEP
+
+
+class AgedBrieItem(GildedRoseItem):
+
+    def update_quality(self) -> None:
+        self.increase_quality()
+        if self.item_has_expired():
+            self.increase_quality()
+
+    def item_has_expired(self) -> bool:
+        return self.sell_in < 0
+
+    def increase_quality(self) -> None:
+        if self.quality < MAX_QUALITY:
+            self.quality = self.quality + QUALITY_STEP
