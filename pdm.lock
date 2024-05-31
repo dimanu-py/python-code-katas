@@ -5,7 +5,7 @@
 groups = ["default", "tests"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:45cb33b1eb1a1d73ab63f9d94a3b1c058d2048d577ddf4c62c9bcc789219b5d8"
+content_hash = "sha256:85bbd513624a7bd306da5a0fd554881daa68b0f284b46b5608d18aa13dec61c4"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -130,6 +130,19 @@ dependencies = [
 ]
 files = [
     {file = "doublex-1.9.6.1.tar.gz", hash = "sha256:48fbc633598eb913a6eb0c4694f8c040ba57bae9653d45643a84243e0c9f3268"},
+]
+
+[[package]]
+name = "doublex-expects"
+version = "0.7.1"
+summary = "Expects matchers for Doublex test doubles assertions"
+groups = ["tests"]
+dependencies = [
+    "doublex",
+    "expects>=0.8.0rc1",
+]
+files = [
+    {file = "doublex-expects-0.7.1.tar.gz", hash = "sha256:8040682d97f0a66f632c5df982f78d09aee36b2c4a1eb275b0c596d115f200aa"},
 ]
 
 [[package]]

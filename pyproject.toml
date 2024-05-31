@@ -20,4 +20,5 @@ tests = [
     "expects>=0.9.0",
     "approvaltests>=14.0.0",
     "doublex>=1.9.6.1",
+    "doublex-expects>=0.7.1",
 ]
