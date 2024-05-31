@@ -81,6 +81,7 @@ pdm run pytest tests/kata_name
 - [ ] [Parallel Change Refactoring](parallel_change/README.md)
 - [ ] [Tire Pressure](tire_pressure/README.md)
 - [ ] [Tell Don't Ask](tell_dont_ask/README.md)
+- [ ] [Character Copier](character_copier/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
 
