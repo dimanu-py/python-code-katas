@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 MIN_QUALITY = 0
 MAX_QUALITY = 50
-QUALITY_STEP = 1
+STEP = 1
 
 class Item:
     def __init__(self, name: str, sell_in: int, quality: int) -> None:
@@ -28,14 +28,14 @@ class GildedRoseItem(ABC, Item):
 
     def increase_quality(self) -> None:
         if self.quality < MAX_QUALITY:
-            self.quality = self.quality + QUALITY_STEP
+            self.quality = self.quality + STEP
 
     def decrease_quality(self) -> None:
         if self.quality > MIN_QUALITY:
-            self.quality = self.quality - QUALITY_STEP
+            self.quality = self.quality - STEP
 
     def decrease_sell_in(self) -> None:
-        self.sell_in = self.sell_in - QUALITY_STEP
+        self.sell_in = self.sell_in - STEP
 
 
 class CommonItem(GildedRoseItem):
