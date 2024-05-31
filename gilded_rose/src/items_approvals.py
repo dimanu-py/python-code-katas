@@ -49,3 +49,15 @@ class AgedBrieItem(GildedRoseItem):
         self.increase_quality()
         if self.item_has_expired():
             self.increase_quality()
+
+
+class BackstagePassesItem(GildedRoseItem):
+
+    def update_quality(self) -> None:
+        self.increase_quality()
+        if self.sell_in < 10:
+            self.increase_quality()
+        if self.sell_in < 5:
+            self.increase_quality()
+        if self.item_has_expired():
+            self.quality = MIN_QUALITY
