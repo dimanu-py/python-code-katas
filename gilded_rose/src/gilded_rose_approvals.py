@@ -1,4 +1,4 @@
-from gilded_rose_approvals.items import Item, CommonItem, AgedBrieItem
+from gilded_rose_approvals.items import Item, CommonItem, AgedBrieItem, BackstagePassesItem
 
 QUALITY_STEP = 1
 MIN_QUALITY = 0
@@ -23,19 +23,11 @@ class GildedRose:
 
         self.decrease_sell_in(item)
 
-        if item.name == BACKSTAGE_PASSES:
-            self.increase_quality(item)
-            if item.name == BACKSTAGE_PASSES:
-                if item.sell_in < 10:
-                    self.increase_quality(item)
-                if item.sell_in < 5:
-                    self.increase_quality(item)
-            if self.item_has_expired(item):
-                item.quality = MIN_QUALITY
-
         if isinstance(item, CommonItem):
             item.update_quality()
         elif isinstance(item, AgedBrieItem):
+            item.update_quality()
+        elif isinstance(item, BackstagePassesItem):
             item.update_quality()
 
     def item_has_expired(self, item: Item) -> bool:
