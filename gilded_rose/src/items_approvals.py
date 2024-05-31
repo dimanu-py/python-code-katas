@@ -61,3 +61,9 @@ class BackstagePassesItem(GildedRoseItem):
             self.increase_quality()
         if self.item_has_expired():
             self.quality = MIN_QUALITY
+
+
+class SulfurasItem(GildedRoseItem):
+
+    def update_quality(self) -> None:
+        return
