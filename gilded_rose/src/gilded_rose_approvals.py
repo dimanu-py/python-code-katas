@@ -1,19 +1,11 @@
+from gilded_rose_approvals.items import Item, CommonItem
+
 QUALITY_STEP = 1
 MIN_QUALITY = 0
 MAX_QUALITY = 50
 SULFURAS = "Sulfuras, Hand of Ragnaros"
 BACKSTAGE_PASSES = "Backstage passes"
 AGED_BRIE = "Aged Brie"
-
-
-class Item:
-    def __init__(self, name: str, sell_in: int, quality: int) -> None:
-        self.name = name
-        self.sell_in = sell_in
-        self.quality = quality
-
-    def __repr__(self):
-        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
 
 class GildedRose:
@@ -46,10 +38,8 @@ class GildedRose:
             if self.item_has_expired(item):
                 item.quality = MIN_QUALITY
 
-        else:
-            self.decrease_quality(item)
-            if self.item_has_expired(item):
-                self.decrease_quality(item)
+        if isinstance(item, CommonItem):
+            item.update_quality()
 
     def item_has_expired(self, item: Item) -> bool:
         return item.sell_in < 0

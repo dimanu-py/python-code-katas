@@ -1,6 +1,7 @@
 from approvaltests import verify_all_combinations
 
-from gilded_rose.src.gilded_rose_approvals import Item, GildedRose
+from gilded_rose.src.gilded_rose_approvals import GildedRose
+from gilded_rose.src.items_approvals import Item, CommonItem
 
 
 def item_printer(item: Item) -> str:
@@ -21,7 +22,7 @@ class TestGildedRoseApprovals:
         )
 
     def do_update_quality(self, name: str, sell_in: int, quality: int) -> str:
-        item = [Item(name, sell_in, quality)]
+        item = [self.select_item(name, sell_in, quality)]
         gilded_rose = GildedRose(item)
 
         gilded_rose.process_items()
@@ -29,3 +30,8 @@ class TestGildedRoseApprovals:
         item_as_string = item_printer(item[0])
 
         return item_as_string
+
+    def select_item(self, name: str, sell_in: int, quality: int) -> Item:
+        if name == "Common Item":
+            return CommonItem(name, sell_in, quality)
+        return Item(name, sell_in, quality)
