@@ -1,4 +1,4 @@
-from gilded_rose_approvals.items import Item, CommonItem, AgedBrieItem, BackstagePassesItem
+from gilded_rose_approvals.items import Item, CommonItem, AgedBrieItem, BackstagePassesItem, SulfurasItem
 
 QUALITY_STEP = 1
 MIN_QUALITY = 0
@@ -18,7 +18,7 @@ class GildedRose:
             self.update_quality(item)
 
     def update_quality(self, item: Item) -> None:
-        if item.name == SULFURAS:
+        if isinstance(item, SulfurasItem):
             return
 
         self.decrease_sell_in(item)
