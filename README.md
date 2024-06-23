@@ -84,6 +84,7 @@ pdm run pytest tests/kata_name
 - [ ] [Character Copier](character_copier/README.md)
 - [ ] [Bags](bags/README.md)
 - [ ] [ATM Machine](atm/README.md)
+- [ ] [Trip Service](trip_service/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
 
