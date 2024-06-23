@@ -8,5 +8,5 @@ class Trip:
 
 class TripRepository:
   @staticmethod
-  def find_trips_by_user(user: User) -> Trip:
+  def find_trips_by_user(user: User) -> list[Trip]:
     raise DependendClassCallDuringUnitTestException("TripDAO should not be invoked on an unit test.")
