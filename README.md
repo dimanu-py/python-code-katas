@@ -82,6 +82,7 @@ pdm run pytest tests/kata_name
 - [ ] [Tire Pressure](tire_pressure/README.md)
 - [ ] [Tell Don't Ask](tell_dont_ask/README.md)
 - [ ] [Character Copier](character_copier/README.md)
+- [ ] [Bags](bags/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
 
