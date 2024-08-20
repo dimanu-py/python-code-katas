@@ -12,7 +12,7 @@ class OrderApprovalUseCase:
     def run(self, request: OrderApprovalRequest) -> None:
         order = self._order_repository.get_by_id(request.order_id)
 
-        if order.status == OrderStatus.SHIPPED:
+        if order.is_shipped():
             raise ShippedOrdersCannotBeChangedException()
 
         if request.approved and order.status == OrderStatus.REJECTED:
