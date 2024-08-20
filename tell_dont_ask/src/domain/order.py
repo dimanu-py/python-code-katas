@@ -15,3 +15,6 @@ class Order:
 
     def is_shipped(self) -> bool:
         return self.status == OrderStatus.SHIPPED
+
+    def is_rejected(self) -> bool:
+        return self.status == OrderStatus.REJECTED

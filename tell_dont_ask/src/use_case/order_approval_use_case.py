@@ -15,7 +15,7 @@ class OrderApprovalUseCase:
         if order.is_shipped():
             raise ShippedOrdersCannotBeChangedException()
 
-        if request.approved and order.status == OrderStatus.REJECTED:
+        if request.approved and order.is_rejected():
             raise RejectedOrderCannotBeApprovedException()
 
         if not request.approved and order.status == OrderStatus.APPROVED:
