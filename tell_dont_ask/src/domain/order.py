@@ -18,3 +18,6 @@ class Order:
 
     def is_rejected(self) -> bool:
         return self.status == OrderStatus.REJECTED
+
+    def is_approved(self) -> bool:
+        return self.status == OrderStatus.APPROVED
