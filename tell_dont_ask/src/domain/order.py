@@ -21,3 +21,9 @@ class Order:
 
     def is_approved(self) -> bool:
         return self.status == OrderStatus.APPROVED
+
+    def approve(self) -> None:
+        self.status = OrderStatus.APPROVED
+
+    def reject(self) -> None:
+        self.status = OrderStatus.REJECTED
