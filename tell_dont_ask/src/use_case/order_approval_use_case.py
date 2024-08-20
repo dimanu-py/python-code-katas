@@ -21,5 +21,5 @@ class OrderApprovalUseCase:
         if request.is_rejected() and order.is_approved():
             raise ApprovedOrderCannotBeRejectedException()
 
-        order.status = OrderStatus.APPROVED if request.approved else OrderStatus.REJECTED
+        order.approve() if request.is_approved() else order.reject()
         self._order_repository.save(order)
