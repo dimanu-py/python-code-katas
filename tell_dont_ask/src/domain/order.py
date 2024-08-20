@@ -12,3 +12,6 @@ class Order:
     items: list[OrderItem] = field(default_factory=list)
     tax: float = 0
     status: OrderStatus = OrderStatus.CREATED
+
+    def is_shipped(self) -> bool:
+        return self.status == OrderStatus.SHIPPED
