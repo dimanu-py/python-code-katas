@@ -1,6 +1,5 @@
 import pytest
 
-from tell_dont_ask.src.domain.order_status import OrderStatus
 from tell_dont_ask.src.use_case.exceptions import OrderCannotBeShippedException, OrderCannotBeShippedTwiceException
 from tell_dont_ask.src.use_case.order_shipment_request import OrderShipmentRequest
 from tell_dont_ask.src.use_case.order_shipment_use_case import OrderShipmentUseCase
@@ -21,7 +20,7 @@ class TestOrderShipmentUseCase:
 
         self.use_case.run(request)
 
-        assert self.order_repository.inserted_order.status == OrderStatus.SHIPPED
+        assert self.order_repository.inserted_order.is_shipped()
         assert self.shipment_service.shipped_order == approved_order
 
     def test_created_orders_cannot_be_shipped(self, created_order):
