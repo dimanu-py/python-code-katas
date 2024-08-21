@@ -33,7 +33,7 @@ class TestOrderApprovalUseCase:
         self.order_repository = StubOrderRepository()
         self.use_case = OrderApprovalUseCase(self.order_repository)
 
-    def test_approved_existing_order(self, created_order: Order):
+    def test_existing_order_is_approved(self, created_order: Order):
         self.order_repository.add_order(created_order)
         request = OrderApprovalRequest(order_id=1, approved=True)
 
@@ -42,7 +42,7 @@ class TestOrderApprovalUseCase:
         saved_order = self.order_repository.inserted_order
         assert saved_order.status == OrderStatus.APPROVED
 
-    def test_rejected_existing_order(self, created_order: Order):
+    def test_existing_order_is_rejected(self, created_order: Order):
         self.order_repository.add_order(created_order)
         request = OrderApprovalRequest(order_id=1, approved=False)
 
