@@ -36,3 +36,9 @@ class Order:
 
     def calculate_tax(self) -> None:
         self.tax = sum(item.tax for item in self.items)
+
+    def ship(self) -> None:
+        self.status = OrderStatus.SHIPPED
+
+    def is_created(self) -> bool:
+        return self.status == OrderStatus.CREATED
