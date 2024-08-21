@@ -43,7 +43,7 @@ class TestOrderCreationUseCase:
         inserted_order = self.order_repository.inserted_order
         assert inserted_order == expected_order
 
-    def test_unknown_product(self):
+    def test_cannot_add_unknown_product_to_order(self):
         request = SellItemsRequest()
         request.add(SellItemRequest(product_name='unknown product', quantity=1))
 
