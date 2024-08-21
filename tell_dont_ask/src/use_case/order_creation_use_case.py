@@ -27,9 +27,8 @@ class OrderCreationUseCase:
             if product is None:
                 raise UnknownProductException()
 
-            unitary_tax = product.calculate_unitary_tax()
             taxed_amount = product.calculated_taxed_amount(item_request.quantity)
-            tax_amount = unitary_tax * item_request.quantity
+            tax_amount = product.calculate_tax_amount(item_request.quantity)
 
             order_item = OrderItem(
                 product=product,
