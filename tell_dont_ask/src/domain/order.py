@@ -32,7 +32,7 @@ class Order:
         self.items.append(item)
 
     def calculate_price(self) -> None:
-        self.total = sum(item.taxed_amount for item in self.items)
+        self.total = sum(item.price for item in self.items)
 
     def calculate_tax(self) -> None:
         self.tax = sum(item.tax for item in self.items)

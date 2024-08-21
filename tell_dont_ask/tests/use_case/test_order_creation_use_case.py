@@ -37,12 +37,12 @@ class TestOrderCreationUseCase:
         assert inserted_order.items[0].product.name == 'salad'
         assert inserted_order.items[0].product.price == 3.56
         assert inserted_order.items[0].quantity == 2
-        assert inserted_order.items[0].taxed_amount == 7.84
+        assert inserted_order.items[0].price == 7.84
         assert inserted_order.items[0].tax == 0.72
         assert inserted_order.items[1].product.name == 'tomato'
         assert inserted_order.items[1].product.price == 4.65
         assert inserted_order.items[1].quantity == 3
-        assert inserted_order.items[1].taxed_amount == 15.36
+        assert inserted_order.items[1].price == 15.36
         assert inserted_order.items[1].tax == 1.41
 
     def test_unknown_product(self):
