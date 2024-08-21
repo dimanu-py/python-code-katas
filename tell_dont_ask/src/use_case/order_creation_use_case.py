@@ -21,7 +21,7 @@ class OrderCreationUseCase:
             tax=0
         )
 
-        for item_request in request.requests:
+        for item_request in request.products:
             product = self._product_catalog.get_by_name(item_request.product_name)
 
             if product is None:
