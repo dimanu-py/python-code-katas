@@ -28,8 +28,7 @@ class OrderCreationUseCase:
                 raise UnknownProductException()
 
             unitary_tax = product.calculate_unitary_tax()
-            unitary_taxed_amount = product.calculate_unitary_taxed_amount()
-            taxed_amount = round(unitary_taxed_amount * item_request.quantity, 2)
+            taxed_amount = product.calculated_taxed_amount(item_request.quantity)
             tax_amount = unitary_tax * item_request.quantity
 
             order_item = OrderItem(
