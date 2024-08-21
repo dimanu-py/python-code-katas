@@ -14,3 +14,6 @@ class Product:
 
     def calculate_unitary_taxed_amount(self) -> float:
         return round(self.price + self.calculate_unitary_tax(), 2)
+
+    def calculated_taxed_amount(self, quantity: int) -> float:
+        return round(self.calculate_unitary_taxed_amount() * quantity, 2)
