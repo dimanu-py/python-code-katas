@@ -11,12 +11,12 @@ from tell_dont_ask.tests.doubles.stub_order_repository import StubOrderRepositor
 
 
 class TestOrderCreationUseCase:
+    SALAD: Product = Product(name='salad', price=3.56, category=Category(name='food', tax_percentage=10))
+    TOMATO: Product = Product(name='tomato', price=4.65, category=Category(name='food', tax_percentage=10))
+
     def setup_method(self):
         self.order_repository = StubOrderRepository()
-        self.product_catalog = InMemoryProductCatalog([
-            Product(name='salad', price=3.56, category=Category(name='food', tax_percentage=10)),
-            Product(name='tomato', price=4.65, category=Category(name='food', tax_percentage=10))
-        ])
+        self.product_catalog = InMemoryProductCatalog([self.SALAD, self.TOMATO])
         self.use_case = OrderCreationUseCase(self.order_repository, self.product_catalog)
 
     def test_sell_multiple_items(self):
