@@ -24,13 +24,12 @@ class OrderCreationUseCase:
             product_price_including_tax = product.calculate_price_with_tax(item_request.quantity)
             tax = product.calculate_tax_amount(item_request.quantity)
 
-            order_item = OrderItem(
+            self.order.add(OrderItem(
                 product=product,
                 quantity=item_request.quantity,
                 tax=tax,
                 taxed_amount=product_price_including_tax
-            )
-            self.order.items.append(order_item)
+            ))
 
             self.order.total += product_price_including_tax
             self.order.tax += tax

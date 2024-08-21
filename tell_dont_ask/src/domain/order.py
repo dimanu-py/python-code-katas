@@ -27,3 +27,6 @@ class Order:
 
     def reject(self) -> None:
         self.status = OrderStatus.REJECTED
+
+    def add(self, item: OrderItem) -> None:
+        self.items.append(item)
