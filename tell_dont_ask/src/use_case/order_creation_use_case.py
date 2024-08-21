@@ -31,7 +31,7 @@ class OrderCreationUseCase:
                 taxed_amount=product_price_including_tax
             ))
 
-            self.order.total += product_price_including_tax
             self.order.tax += tax
+        self.order.calculate_price()
 
         self._order_repository.save(self.order)
