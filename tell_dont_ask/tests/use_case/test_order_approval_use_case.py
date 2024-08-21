@@ -13,22 +13,6 @@ class TestOrderApprovalUseCase:
     order_repository: StubOrderRepository
     use_case: OrderApprovalUseCase
 
-    @pytest.fixture
-    def created_order(self) -> Order:
-        return Order(id=1, status=OrderStatus.CREATED)
-
-    @pytest.fixture
-    def rejected_order(self) -> Order:
-        return Order(id=1, status=OrderStatus.REJECTED)
-
-    @pytest.fixture
-    def approved_order(self) -> Order:
-        return Order(id=1, status=OrderStatus.APPROVED)
-
-    @pytest.fixture
-    def shipped_order(self) -> Order:
-        return Order(id=1, status=OrderStatus.SHIPPED)
-
     def setup_method(self):
         self.order_repository = StubOrderRepository()
         self.use_case = OrderApprovalUseCase(self.order_repository)
