@@ -1,4 +1,4 @@
-from tell_dont_ask.src.domain.order_status import OrderStatus
+from tell_dont_ask.src.domain.order import Order
 from tell_dont_ask.src.repository.order_repository import OrderRepository
 from tell_dont_ask.src.use_case.exceptions import ShippedOrdersCannotBeChangedException, RejectedOrderCannotBeApprovedException, \
     ApprovedOrderCannotBeRejectedException
@@ -12,14 +12,16 @@ class OrderApprovalUseCase:
     def run(self, request: OrderApprovalRequest) -> None:
         order = self._order_repository.get_by_id(request.order_id)
 
-        if order.is_shipped():
-            raise ShippedOrdersCannotBeChangedException()
-
-        if request.is_approved() and order.is_rejected():
-            raise RejectedOrderCannotBeApprovedException()
-
-        if request.is_rejected() and order.is_approved():
-            raise ApprovedOrderCannotBeRejectedException()
+        self.validate_order_approval(order, request)
 
         order.approve() if request.is_approved() else order.reject()
         self._order_repository.save(order)
+
+    @staticmethod
+    def validate_order_approval(order: Order, request: OrderApprovalRequest) -> None:
+        if order.is_shipped():
+            raise ShippedOrdersCannotBeChangedException()
+        if request.is_approved() and order.is_rejected():
+            raise RejectedOrderCannotBeApprovedException()
+        if request.is_rejected() and order.is_approved():
+            raise ApprovedOrderCannotBeRejectedException()
