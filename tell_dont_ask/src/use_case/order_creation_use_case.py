@@ -15,6 +15,12 @@ class OrderCreationUseCase:
         self.order = Order()
 
     def run(self, request: SellItemsRequest) -> None:
+        self._fill_order_with_products(request)
+        self.order.calculate_price()
+        self.order.calculate_tax()
+        self._order_repository.save(self.order)
+
+    def _fill_order_with_products(self, request) -> None:
         for item_request in request.products:
             product = self._product_catalog.get_by_name(item_request.product_name)
 
@@ -25,8 +31,3 @@ class OrderCreationUseCase:
                 product=product,
                 quantity=item_request.quantity,
             ))
-
-        self.order.calculate_price()
-        self.order.calculate_tax()
-
-        self._order_repository.save(self.order)
