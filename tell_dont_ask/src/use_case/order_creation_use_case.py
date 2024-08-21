@@ -27,18 +27,18 @@ class OrderCreationUseCase:
             if product is None:
                 raise UnknownProductException()
 
-            taxed_amount = product.calculated_taxed_amount(item_request.quantity)
-            tax_amount = product.calculate_tax_amount(item_request.quantity)
+            product_price_including_tax = product.calculate_price_with_tax(item_request.quantity)
+            tax = product.calculate_tax_amount(item_request.quantity)
 
             order_item = OrderItem(
                 product=product,
                 quantity=item_request.quantity,
-                tax=tax_amount,
-                taxed_amount=taxed_amount
+                tax=tax,
+                taxed_amount=product_price_including_tax
             )
             order.items.append(order_item)
 
-            order.total += taxed_amount
-            order.tax += tax_amount
+            order.total += product_price_including_tax
+            order.tax += tax
 
         self._order_repository.save(order)
