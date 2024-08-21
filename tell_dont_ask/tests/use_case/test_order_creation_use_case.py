@@ -1,11 +1,13 @@
 import pytest
 
-from tell_dont_ask.src.domain import Category
-from tell_dont_ask.src.domain import OrderStatus
-from tell_dont_ask.src.domain import Product
-from tell_dont_ask.src import UnknownProductException
+from tell_dont_ask.src.domain.category import Category
+from tell_dont_ask.src.domain.order import Order
+from tell_dont_ask.src.domain.order_item import OrderItem
+from tell_dont_ask.src.domain.order_status import OrderStatus
+from tell_dont_ask.src.domain.product import Product
+from tell_dont_ask.src.use_case.exceptions import UnknownProductException
 from tell_dont_ask.src.use_case.order_creation_use_case import OrderCreationUseCase
-from tell_dont_ask.src import SellItemsRequest, SellItemRequest
+from tell_dont_ask.src.use_case.sell_item_request import SellItemsRequest, SellItemRequest
 from tell_dont_ask.tests.doubles.in_memory_product_catalog import InMemoryProductCatalog
 from tell_dont_ask.tests.doubles.stub_order_repository import StubOrderRepository
 
@@ -25,25 +27,21 @@ class TestOrderCreationUseCase:
             SellItemRequest(product_name='salad', quantity=2),
             SellItemRequest(product_name='tomato', quantity=3)
         )
+        expected_order = Order(
+            total=23.20,
+            tax=2.13,
+            currency='EUR',
+            status=OrderStatus.CREATED,
+            items=[
+                OrderItem(product=self.SALAD, quantity=2),
+                OrderItem(product=self.TOMATO, quantity=3)
+            ]
+        )
 
         self.use_case.run(request)
 
         inserted_order = self.order_repository.inserted_order
-        assert inserted_order.status == OrderStatus.CREATED
-        assert inserted_order.total == 23.20
-        assert inserted_order.tax == 2.13
-        assert inserted_order.currency == 'EUR'
-        assert len(inserted_order.items) == 2
-        assert inserted_order.items[0].product.name == 'salad'
-        assert inserted_order.items[0].product.price == 3.56
-        assert inserted_order.items[0].quantity == 2
-        assert inserted_order.items[0].price == 7.84
-        assert inserted_order.items[0].tax == 0.72
-        assert inserted_order.items[1].product.name == 'tomato'
-        assert inserted_order.items[1].product.price == 4.65
-        assert inserted_order.items[1].quantity == 3
-        assert inserted_order.items[1].price == 15.36
-        assert inserted_order.items[1].tax == 1.41
+        assert inserted_order == expected_order
 
     def test_unknown_product(self):
         request = SellItemsRequest()
