@@ -26,21 +26,21 @@ class OrderCreationUseCase:
 
             if product is None:
                 raise UnknownProductException()
-            else:
-                unitary_tax = round(product.price / 100 * product.category.tax_percentage, 2)
-                unitary_taxed_amount = round((product.price + unitary_tax), 2)
-                taxed_amount = round(unitary_taxed_amount * item_request.quantity, 2)
-                tax_amount = unitary_tax * item_request.quantity
 
-                order_item = OrderItem(
-                    product=product,
-                    quantity=item_request.quantity,
-                    tax=tax_amount,
-                    taxed_amount=taxed_amount
-                )
-                order.items.append(order_item)
+            unitary_tax = round(product.price / 100 * product.category.tax_percentage, 2)
+            unitary_taxed_amount = round((product.price + unitary_tax), 2)
+            taxed_amount = round(unitary_taxed_amount * item_request.quantity, 2)
+            tax_amount = unitary_tax * item_request.quantity
 
-                order.total += taxed_amount
-                order.tax += tax_amount
+            order_item = OrderItem(
+                product=product,
+                quantity=item_request.quantity,
+                tax=tax_amount,
+                taxed_amount=taxed_amount
+            )
+            order.items.append(order_item)
+
+            order.total += taxed_amount
+            order.tax += tax_amount
 
         self._order_repository.save(order)
