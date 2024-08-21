@@ -10,3 +10,6 @@ class SellItemRequest:
 @dataclass
 class SellItemsRequest:
     requests: list[SellItemRequest] = field(default_factory=list)
+
+    def add(self, *items: SellItemRequest) -> None:
+        self.requests.extend(items)

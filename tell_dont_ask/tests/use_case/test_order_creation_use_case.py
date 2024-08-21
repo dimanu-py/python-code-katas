@@ -21,8 +21,10 @@ class TestOrderCreationUseCase:
 
     def test_sell_multiple_items(self):
         request = SellItemsRequest()
-        request.requests.append(SellItemRequest(product_name='salad', quantity=2))
-        request.requests.append(SellItemRequest(product_name='tomato', quantity=3))
+        request.add(
+            SellItemRequest(product_name='salad', quantity=2),
+            SellItemRequest(product_name='tomato', quantity=3)
+        )
 
         self.use_case.run(request)
 
@@ -45,7 +47,7 @@ class TestOrderCreationUseCase:
 
     def test_unknown_product(self):
         request = SellItemsRequest()
-        request.requests.append(SellItemRequest(product_name='unknown product', quantity=1))
+        request.add(SellItemRequest(product_name='unknown product', quantity=1))
 
         with pytest.raises(UnknownProductException):
             self.use_case.run(request)
