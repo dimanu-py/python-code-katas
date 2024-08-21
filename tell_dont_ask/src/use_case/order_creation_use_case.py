@@ -7,6 +7,8 @@ from tell_dont_ask.src.use_case.sell_item_request import SellItemsRequest
 
 
 class OrderCreationUseCase:
+    order: Order
+
     def __init__(self, order_repository: OrderRepository, product_catalog: ProductCatalog):
         self._order_repository = order_repository
         self._product_catalog = product_catalog
