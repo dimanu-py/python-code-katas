@@ -1,5 +1,3 @@
-from unittest.mock import patch
-
 import pytest
 from expects import expect, be_false, be_true
 
@@ -13,11 +11,10 @@ LOW_PRESSURE = 16
 
 class TestAlarm:
 
-    def setup_method(self):
-        self.alarm = Alarm()
-
     def test_alarm_is_off_by_default(self):
-        expect(self.alarm.is_alarm_on).to(be_false)
+        alarm = Alarm()
+
+        expect(alarm.is_alarm_on).to(be_false)
 
     @pytest.mark.parametrize("pressure_read", [LOW_PRESSURE, HIGH_PRESSURE])
     def test_alarm_is_on_when_pressure_is_not_between_thresholds(self, pressure_read):
