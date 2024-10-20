@@ -21,3 +21,10 @@ class TestAlarm:
             self.alarm.check_pressure()
 
             expect(self.alarm.is_alarm_on).to(be_true)
+
+    def test_alarm_is_off_when_pressure_is_in_threshold(self):
+        with patch("tire_pressure.src.sensor.Sensor.pop_next_pressure_psi_value") as preesure:
+            preesure.return_value = 20
+            self.alarm.check_pressure()
+
+            expect(self.alarm.is_alarm_on).to(be_false)
