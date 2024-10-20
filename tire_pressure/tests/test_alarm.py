@@ -20,14 +20,14 @@ class TestAlarm:
 
     @pytest.mark.parametrize("pressure_read", [LOW_PRESSURE, HIGH_PRESSURE])
     def test_alarm_is_on_when_pressure_is_not_between_thresholds(self, pressure_read):
-        with patch("tire_pressure.src.sensor.Sensor.pop_next_pressure_psi_value") as pressure:
+        with patch("tire_pressure.src.sensor.TireSensor.pop_next_pressure_psi_value") as pressure:
             pressure.return_value = pressure_read
             self.alarm.check_pressure()
 
             expect(self.alarm.is_alarm_on).to(be_true)
 
     def test_alarm_is_off_when_pressure_is_in_threshold(self):
-        with patch("tire_pressure.src.sensor.Sensor.pop_next_pressure_psi_value") as preesure:
+        with patch("tire_pressure.src.sensor.TireSensor.pop_next_pressure_psi_value") as preesure:
             preesure.return_value = CORRECT_PRESSURE
             self.alarm.check_pressure()
 
