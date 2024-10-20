@@ -4,6 +4,7 @@ import pytest
 from expects import expect, be_false, be_true
 
 from tire_pressure.src.alarm import Alarm
+from tire_pressure.tests.stub_sensor import StubSensor
 
 CORRECT_PRESSURE = 20
 HIGH_PRESSURE = 22
@@ -20,15 +21,17 @@ class TestAlarm:
 
     @pytest.mark.parametrize("pressure_read", [LOW_PRESSURE, HIGH_PRESSURE])
     def test_alarm_is_on_when_pressure_is_not_between_thresholds(self, pressure_read):
-        with patch("tire_pressure.src.sensor.TireSensor.pop_next_pressure_psi_value") as pressure:
-            pressure.return_value = pressure_read
-            self.alarm.check_pressure()
+        sensor = StubSensor(pressure_read=pressure_read)
+        alarm = Alarm(sensor=sensor)
 
-            expect(self.alarm.is_alarm_on).to(be_true)
+        alarm.check_pressure()
+
+        expect(alarm.is_alarm_on).to(be_true)
 
     def test_alarm_is_off_when_pressure_is_in_threshold(self):
-        with patch("tire_pressure.src.sensor.TireSensor.pop_next_pressure_psi_value") as preesure:
-            preesure.return_value = CORRECT_PRESSURE
-            self.alarm.check_pressure()
+        sensor = StubSensor(pressure_read=CORRECT_PRESSURE)
+        alarm = Alarm(sensor=sensor)
 
-            expect(self.alarm.is_alarm_on).to(be_false)
+        alarm.check_pressure()
+
+        expect(alarm.is_alarm_on).to(be_false)
