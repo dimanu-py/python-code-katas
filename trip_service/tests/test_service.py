@@ -23,7 +23,7 @@ class TestTripService:
     def test_user_needs_to_be_logged_in(self):
         trip_service = SeamTripService(self.GUEST_USER)
 
-        expect(lambda: trip_service.get_trips_by_user(self.GUEST_USER)).to(raise_error(UserNotLoggedInException))
+        expect(lambda: trip_service.get_trips_by_user(self.GENERIC_USER)).to(raise_error(UserNotLoggedInException))
 
     def test_logged_user_gets_no_trips_if_is_not_friend(self):
         trip_service = SeamTripService(self.LOGGED_USER)
