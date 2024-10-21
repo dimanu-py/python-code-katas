@@ -6,8 +6,7 @@ from trip_service.src.user_session import UserSession
 
 class TripService:
 
-    def get_trips_by_user(self, user: User) -> list[Trip]:
-        logged_user = self.get_logged_user()
+    def get_trips_by_user(self, logged_user: User, user: User) -> list[Trip]:
         self._verify(logged_user)
 
         return self.get_trips_from(user) if user.is_friend_with(logged_user) else []
@@ -19,6 +18,3 @@ class TripService:
 
     def get_trips_from(self, user: User) -> list[Trip]:
         return TripRepository.find_trips_by_user(user)
-
-    def get_logged_user(self) -> User:
-        return UserSession.get_instance().get_logged_user()
