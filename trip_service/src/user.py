@@ -19,4 +19,4 @@ class User:
         return self.trips
 
     def is_friend_with(self, user: "User") -> bool:
-        return False
+        return user in self.friends
