@@ -4,6 +4,7 @@ from trip_service.src.exceptions import UserNotLoggedInException
 from trip_service.src.service import TripService
 from trip_service.src.trip import Trip
 from trip_service.src.user import User
+from trip_service.src.user_builder import UserBuilder
 
 
 class SeamTripService(TripService):
@@ -32,19 +33,18 @@ class TestTripService:
 
     def test_logged_user_gets_no_trips_if_is_not_friend(self):
         trip_service = SeamTripService(self.LOGGED_USER)
-        stranger = User()
-        stranger.add_friend(self.GENERIC_USER)
+        stranger = UserBuilder().friend_of(self.GENERIC_USER).build()
 
         trips = trip_service.get_trips_by_user(stranger)
 
         expect(trips).to(be_empty)
 
     def test_logged_user_gets_friend_trips(self):
-        friend = User()
-        friend.add_friend(self.LOGGED_USER)
-        friend.add_friend(self.GENERIC_USER)
-        friend.add_trip(self.CANADA_TRIP)
         trip_service = SeamTripService(self.LOGGED_USER)
+        friend = (UserBuilder()
+                  .friend_of(self.LOGGED_USER, self.GENERIC_USER)
+                  .has_travel_to(self.CANADA_TRIP)
+                  .build())
 
         trips = trip_service.get_trips_by_user(friend)
 
