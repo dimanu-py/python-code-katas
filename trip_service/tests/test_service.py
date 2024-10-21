@@ -2,6 +2,7 @@ from expects import expect, raise_error, be_empty
 
 from trip_service.src.exceptions import UserNotLoggedInException
 from trip_service.src.service import TripService
+from trip_service.src.trip import Trip
 from trip_service.src.user import User
 
 
@@ -12,6 +13,9 @@ class SeamTripService(TripService):
 
     def get_logged_user(self) -> User:
         return self.user
+
+    def get_trips_from(self, user: User) -> list[Trip]:
+        return user.get_trips()
 
 
 class TestTripService:
