@@ -10,24 +10,21 @@ class TestUserBuilder:
     ANY_USER = User()
     ANY_TRIP = Trip()
 
-    def test_user_has_no_friends_nor_trips_initially(self):
-        builder = UserBuilder()
+    def setup_method(self):
+        self.builder = UserBuilder()
 
-        user = builder.build()
+    def test_user_has_no_friends_nor_trips_initially(self):
+        user = self.builder.build()
 
         expect(user.friends).to(be_empty)
         expect(user.trips).to(be_empty)
 
     def test_user_has_friends(self):
-        builder = UserBuilder()
-
-        user = builder.friend_of(self.ANY_USER).build()
+        user = self.builder.friend_of(self.ANY_USER).build()
 
         expect(user.friends).to(equal([self.ANY_USER]))
 
     def test_user_has_trips(self):
-        builder = UserBuilder()
-
-        user = builder.has_travel_to(self.ANY_TRIP).build()
+        user = self.builder.has_travel_to(self.ANY_TRIP).build()
 
         expect(user.trips).to(equal([self.ANY_TRIP]))
