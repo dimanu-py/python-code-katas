@@ -5,5 +5,5 @@ from trip_service.src.user import User
 class InMemoryTripRepository(TripRepository):
 
     @staticmethod
-    def find_trips_by_user(user: User) -> list[Trip]:
+    def find_trips_of(user: User) -> list[Trip]:
         return user.trips
