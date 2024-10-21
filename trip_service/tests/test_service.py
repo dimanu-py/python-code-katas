@@ -5,6 +5,7 @@ from trip_service.src.service import TripService
 from trip_service.src.trip import Trip
 from trip_service.src.user import User
 from trip_service.src.user_builder import UserBuilder
+from trip_service.tests.in_memory_trip_repository import InMemoryTripRepository
 
 
 class SeamTripService(TripService):
@@ -21,12 +22,12 @@ class TestTripService:
     CANADA_TRIP = Trip()
 
     def test_user_needs_to_be_logged_in(self):
-        trip_service = SeamTripService()
+        trip_service = TripService(InMemoryTripRepository())
 
         expect(lambda: trip_service.get_trips_by_user(self.GUEST_USER, self.GENERIC_USER)).to(raise_error(UserNotLoggedInException))
 
     def test_logged_user_gets_no_trips_if_is_not_friend(self):
-        trip_service = SeamTripService()
+        trip_service = TripService(InMemoryTripRepository())
         stranger = UserBuilder().friend_of(self.GENERIC_USER).build()
 
         trips = trip_service.get_trips_by_user(self.LOGGED_USER, stranger)
@@ -34,7 +35,7 @@ class TestTripService:
         expect(trips).to(be_empty)
 
     def test_logged_user_gets_friend_trips(self):
-        trip_service = SeamTripService()
+        trip_service = TripService(InMemoryTripRepository())
         friend = (UserBuilder()
                   .friend_of(self.LOGGED_USER, self.GENERIC_USER)
                   .has_travel_to(self.CANADA_TRIP)
