@@ -18,6 +18,3 @@ class TripService:
     def _verify(logged_user: User) -> None:
         if not logged_user:
             raise UserNotLoggedInException()
-
-    def get_trips_from(self, user: User) -> list[Trip]:
-        return TripRepository.find_trips_by_user(user)

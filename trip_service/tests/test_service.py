@@ -8,12 +8,6 @@ from trip_service.src.user_builder import UserBuilder
 from trip_service.tests.in_memory_trip_repository import InMemoryTripRepository
 
 
-class SeamTripService(TripService):
-
-    def get_trips_from(self, user: User) -> list[Trip]:
-        return user.get_trips()
-
-
 class TestTripService:
 
     GUEST_USER = None
