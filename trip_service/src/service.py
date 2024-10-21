@@ -11,13 +11,8 @@ class TripService:
         if not logged_user:
           raise UserNotLoggedInException()
 
-        is_friend = False
         trip_list = []
-        for friend in user.get_friends():
-          if friend is logged_user:
-            is_friend = True
-            break
-        if is_friend:
+        if user.is_friend_with(logged_user):
           trip_list = self.get_trips_from(user)
         return trip_list
 
