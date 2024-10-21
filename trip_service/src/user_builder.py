@@ -15,10 +15,16 @@ class UserBuilder:
         self.friends = list(friends)
         return self
 
+    def has_travel_to(self, *trips: Trip) -> "UserBuilder":
+        self.trips = list(trips)
+        return self
+
     def build(self) -> User:
         user = User()
 
         for friend in self.friends:
             user.add_friend(friend)
+        for trip in self.trips:
+            user.add_trip(trip)
 
         return user
