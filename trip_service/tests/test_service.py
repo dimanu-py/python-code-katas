@@ -1,4 +1,4 @@
-from expects import expect, raise_error, be_empty
+from expects import expect, raise_error, be_empty, equal
 
 from trip_service.src.exceptions import UserNotLoggedInException
 from trip_service.src.service import TripService
@@ -23,6 +23,7 @@ class TestTripService:
     GUEST_USER = None
     LOGGED_USER = User()
     GENERIC_USER = User()
+    CANADA_TRIP = Trip()
 
     def test_user_needs_to_be_logged_in(self):
         trip_service = SeamTripService(self.GUEST_USER)
@@ -37,3 +38,14 @@ class TestTripService:
         trips = trip_service.get_trips_by_user(stranger)
 
         expect(trips).to(be_empty)
+
+    def test_logged_user_gets_friend_trips(self):
+        friend = User()
+        friend.add_friend(self.LOGGED_USER)
+        friend.add_friend(self.GENERIC_USER)
+        friend.add_trip(self.CANADA_TRIP)
+        trip_service = SeamTripService(self.LOGGED_USER)
+
+        trips = trip_service.get_trips_by_user(friend)
+
+        expect(trips).to(equal([self.CANADA_TRIP]))
