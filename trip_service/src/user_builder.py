@@ -11,7 +11,14 @@ class UserBuilder:
         self.friends = []
         self.trips = []
 
+    def friend_of(self, *friends: User) -> "UserBuilder":
+        self.friends = list(friends)
+        return self
+
     def build(self) -> User:
         user = User()
+
+        for friend in self.friends:
+            user.add_friend(friend)
 
         return user
