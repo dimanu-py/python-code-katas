@@ -75,16 +75,16 @@ pdm run pytest tests/kata_name
 
 ## Katas
 
-- [ ] [FizzBuzz](fizz_buzz/README.md)
-- [ ] [Leap Year](leap_year/README.md)
-- [ ] [Gilded Rose Refactoring](gilded_rose/README.md)
-- [ ] [Parallel Change Refactoring](parallel_change/README.md)
-- [ ] [Tire Pressure](tire_pressure/README.md)
-- [ ] [Tell Don't Ask](tell_dont_ask/README.md)
+- [x] [FizzBuzz](fizz_buzz/README.md)
+- [x] [Leap Year](leap_year/README.md)
+- [x] [Gilded Rose Refactoring](gilded_rose/README.md)
+- [x] [Parallel Change Refactoring](parallel_change/README.md)
+- [x] [Tire Pressure](tire_pressure/README.md)
+- [x] [Tell Don't Ask](tell_dont_ask/README.md)
 - [ ] [Character Copier](character_copier/README.md)
 - [ ] [Bags](bags/README.md)
 - [ ] [ATM Machine](atm/README.md)
-- [ ] [Trip Service](trip_service/README.md)
+- [x] [Trip Service](trip_service/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
 
