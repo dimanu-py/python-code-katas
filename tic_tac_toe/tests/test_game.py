@@ -1,5 +1,6 @@
 from expects import expect, raise_error, be_empty, contain
 
+from tic_tac_toe.src.already_marked_tile import AlreadyMarkedTileError
 from tic_tac_toe.src.game import Game
 from tic_tac_toe.src.invalid_turn import InvalidTurnError
 from tic_tac_toe.src.tile import Tile
@@ -32,3 +33,9 @@ class TestGame:
 
         expect(self.game.board).not_to(be_empty)
         expect(self.game.board).to(contain(tile_to_play))
+
+    def test_player_cannot_play_on_a_marked_tile(self):
+        marked_tile = Tile.TOP_LEFT
+        self.game.play(player="X", tile=marked_tile)
+
+        expect(lambda: self.game.play(player="O", tile=marked_tile)).to(raise_error(AlreadyMarkedTileError))
