@@ -90,3 +90,24 @@ class ConjuredItem(Item):
         self.decrease_quality(amount=2)
         if self.is_expired():
             self.decrease_quality(amount=2)
+
+
+class ItemCreator:
+
+    SULFURAS = "Sulfuras, Hand of Ragnaros"
+    BACKSTAGE_PASSES = "Backstage passes"
+    AGED_BRIE = "Aged Brie"
+    CONJURED = "Conjured"
+
+    @classmethod
+    def based_on(cls, name: str, sell_in: int, quality: int) -> Item:
+        if name == cls.AGED_BRIE:
+            return AgedBrieItem(name, sell_in, quality)
+        elif name == cls.BACKSTAGE_PASSES:
+            return BackstagePassesItem(name, sell_in, quality)
+        elif name == cls.SULFURAS:
+            return SulfurasItem(name, sell_in, quality)
+        elif name == cls.CONJURED:
+            return ConjuredItem(name, sell_in, quality)
+        return CommonItem(name, sell_in, quality)
+
