@@ -16,15 +16,11 @@ class Item(ABC):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
     @abstractmethod
-    def update_quality(self) -> None:
-        """Updates the quality of the item."""
-
     def process_item(self) -> None:
-        self.decrease_sell_in()
-        self.update_quality()
+        pass
 
-    def is_expired(self) -> bool:
-        return self.sell_in.has_to_be_sold_in(days=0)
+    def has_to_be_sold_in(self, days: int) -> bool:
+        return self.sell_in.has_to_be_sold_in(days)
 
     def increase_quality(self, amount: int = 1) -> None:
         self.quality = self.quality.increase(amount)
@@ -38,46 +34,57 @@ class Item(ABC):
 
 class CommonItem(Item):
 
-    def update_quality(self) -> None:
+    QUALITY_DOUBLE_DECREASE_DAYS_THRESHOLD: int = 0
+
+    def process_item(self) -> None:
+        self.decrease_sell_in()
         self.decrease_quality()
-        if self.is_expired():
+        if self.has_to_be_sold_in(days=self.QUALITY_DOUBLE_DECREASE_DAYS_THRESHOLD):
             self.decrease_quality()
 
 
 class AgedBrieItem(Item):
 
-    def update_quality(self) -> None:
+    QUALITY_DOUBLE_INCREASE_DAYS_THRESHOLD: int = 0
+
+    def process_item(self) -> None:
+        self.decrease_sell_in()
         self.increase_quality()
-        if self.is_expired():
+        if self.has_to_be_sold_in(days=self.QUALITY_DOUBLE_INCREASE_DAYS_THRESHOLD):
             self.increase_quality()
 
 
 class BackstagePassesItem(Item):
 
-    def update_quality(self) -> None:
+    QUALITY_DOUBLE_INCREASE_DAYS_THRESHOLD: int = 10
+    QUALITY_TRIPLE_INCREASE_DAYS_THRESHOLD: int = 5
+    QUALITY_RESET_DAYS_THRESHOLD: int = 0
+
+    def process_item(self) -> None:
+        self.decrease_sell_in()
         self.increase_quality()
-        if self.sell_in.has_to_be_sold_in(days=10):
+        if self.has_to_be_sold_in(days=self.QUALITY_DOUBLE_INCREASE_DAYS_THRESHOLD):
             self.increase_quality()
-        if self.sell_in.has_to_be_sold_in(days=5):
+        if self.has_to_be_sold_in(days=self.QUALITY_TRIPLE_INCREASE_DAYS_THRESHOLD):
             self.increase_quality()
-        if self.is_expired():
+        if self.has_to_be_sold_in(days=self.QUALITY_RESET_DAYS_THRESHOLD):
             self.quality = self.quality.reset()
 
 
 class SulfurasItem(Item):
 
-    def update_quality(self) -> None:
-        return
-
-    def decrease_sell_in(self) -> None:
-        return
+    def process_item(self) -> None:
+        pass
 
 
 class ConjuredItem(Item):
 
-    def update_quality(self) -> None:
+    QUALITY_DOUBLE_DECREASE_DAYS_THRESHOLD: int = 0
+
+    def process_item(self) -> None:
+        self.decrease_sell_in()
         self.decrease_quality(amount=2)
-        if self.is_expired():
+        if self.has_to_be_sold_in(self.QUALITY_DOUBLE_DECREASE_DAYS_THRESHOLD):
             self.decrease_quality(amount=2)
 
 
