@@ -6,3 +6,9 @@ class ItemSellIn:
 
     def __str__(self) -> str:
         return str(self.value)
+
+    def decrease(self) -> "ItemSellIn":
+        return ItemSellIn(self.value - self.DECREASE_AMOUNT)
+
+    def has_to_be_sold_in(self, days: int) -> bool:
+        return self.value < days
