@@ -22,3 +22,10 @@ class TestGame:
         game.play(player="X")
 
         expect(lambda: game.play(player="X")).to(raise_error(InvalidTurnError))
+
+    def test_players_alternates_turns(self):
+        game = Game()
+
+        game.play(player="X")
+
+        expect(lambda: game.play(player="O")).not_to(raise_error(InvalidTurnError))
