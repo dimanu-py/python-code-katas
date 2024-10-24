@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 from gilded_rose.src.item_name import ItemName
+from gilded_rose.src.item_sell_in import ItemSellIn
 
 MIN_QUALITY = 0
 MAX_QUALITY = 50
@@ -17,7 +18,7 @@ class NegativeQualityValueError(Exception):
 
 class Item(ABC):
 
-    def __init__(self, name: ItemName, sell_in: int, quality: int) -> None:
+    def __init__(self, name: ItemName, sell_in: ItemSellIn, quality: int) -> None:
         if quality < MIN_QUALITY:
             raise NegativeQualityValueError(quality)
 
@@ -37,7 +38,7 @@ class Item(ABC):
         self.update_quality()
 
     def is_expired(self) -> bool:
-        return self.sell_in < 0
+        return self.sell_in.has_to_be_sold_in(days=0)
 
     def increase_quality(self, amount: int = 1) -> None:
         self.quality = min(self.quality + amount, MAX_QUALITY)
@@ -46,7 +47,7 @@ class Item(ABC):
         self.quality = max(self.quality - amount, MIN_QUALITY)
 
     def decrease_sell_in(self) -> None:
-        self.sell_in = self.sell_in - STEP
+        self.sell_in = self.sell_in.decrease()
 
 
 class CommonItem(Item):
@@ -69,9 +70,9 @@ class BackstagePassesItem(Item):
 
     def update_quality(self) -> None:
         self.increase_quality()
-        if self.sell_in < 10:
+        if self.sell_in.has_to_be_sold_in(days=10):
             self.increase_quality()
-        if self.sell_in < 5:
+        if self.sell_in.has_to_be_sold_in(days=5):
             self.increase_quality()
         if self.is_expired():
             self.quality = MIN_QUALITY
@@ -97,8 +98,10 @@ class ConjuredItem(Item):
 class ItemCreator:
 
     @classmethod
-    def based_on(cls, raw_name: str, sell_in: int, quality: int) -> Item:
+    def based_on(cls, raw_name: str, raw_sell_in: int, quality: int) -> Item:
         name = ItemName(raw_name)
+        sell_in = ItemSellIn(raw_sell_in)
+
         if name.is_aged_brie():
             return AgedBrieItem(name, sell_in, quality)
         elif name.is_backstage_passes():
