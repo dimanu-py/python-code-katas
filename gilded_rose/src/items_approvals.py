@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from gilded_rose.src.item_name import ItemName
+
 MIN_QUALITY = 0
 MAX_QUALITY = 50
 STEP = 1
@@ -15,7 +17,7 @@ class NegativeQualityValueError(Exception):
 
 class Item(ABC):
 
-    def __init__(self, name: str, sell_in: int, quality: int) -> None:
+    def __init__(self, name: ItemName, sell_in: int, quality: int) -> None:
         if quality < MIN_QUALITY:
             raise NegativeQualityValueError(quality)
 
@@ -94,20 +96,16 @@ class ConjuredItem(Item):
 
 class ItemCreator:
 
-    SULFURAS = "Sulfuras, Hand of Ragnaros"
-    BACKSTAGE_PASSES = "Backstage passes"
-    AGED_BRIE = "Aged Brie"
-    CONJURED = "Conjured"
-
     @classmethod
-    def based_on(cls, name: str, sell_in: int, quality: int) -> Item:
-        if name == cls.AGED_BRIE:
+    def based_on(cls, raw_name: str, sell_in: int, quality: int) -> Item:
+        name = ItemName(raw_name)
+        if name.is_aged_brie():
             return AgedBrieItem(name, sell_in, quality)
-        elif name == cls.BACKSTAGE_PASSES:
+        elif name.is_backstage_passes():
             return BackstagePassesItem(name, sell_in, quality)
-        elif name == cls.SULFURAS:
+        elif name.is_sulfuras():
             return SulfurasItem(name, sell_in, quality)
-        elif name == cls.CONJURED:
+        elif name.is_conjured():
             return ConjuredItem(name, sell_in, quality)
         return CommonItem(name, sell_in, quality)
 
