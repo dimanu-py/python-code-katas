@@ -8,3 +8,8 @@ help:  ## Show this help.
 .PHONY: test
 test:
 	pdm run pytest $(kata)/tests
+
+.PHONY: create-package
+create-package:
+	@read -p "Enter the kata name: " PACKAGE_NAME; \
+	python -m scripts.create_package $$PACKAGE_NAME
