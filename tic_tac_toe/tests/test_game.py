@@ -10,3 +10,8 @@ class TestGame:
         game = Game()
 
         expect(lambda: game.play(player="O")).to(raise_error(InvalidTurnError))
+
+    def test_player_X_starts_playing(self):
+        game = Game()
+
+        expect(lambda: game.play(player="X")).not_to(raise_error(InvalidTurnError))
