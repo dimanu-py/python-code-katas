@@ -4,15 +4,6 @@ MIN_QUALITY = 0
 MAX_QUALITY = 50
 STEP = 1
 
-class Item:
-    def __init__(self, name: str, sell_in: int, quality: int) -> None:
-        self.name = name
-        self.sell_in = sell_in
-        self.quality = quality
-
-    def __repr__(self):
-        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
-
 
 class NegativeQualityValueError(Exception):
     """Negative quality value has been introduced."""
@@ -22,12 +13,18 @@ class NegativeQualityValueError(Exception):
         super().__init__(self.message)
 
 
-class GildedRoseItem(ABC, Item):
+class Item(ABC):
 
     def __init__(self, name: str, sell_in: int, quality: int) -> None:
         if quality < MIN_QUALITY:
             raise NegativeQualityValueError(quality)
-        super().__init__(name, sell_in, quality)
+
+        self.name = name
+        self.sell_in = sell_in
+        self.quality = quality
+
+    def __repr__(self):
+        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
     @abstractmethod
     def update_quality(self) -> None:
@@ -50,7 +47,7 @@ class GildedRoseItem(ABC, Item):
         self.sell_in = self.sell_in - STEP
 
 
-class CommonItem(GildedRoseItem):
+class CommonItem(Item):
 
     def update_quality(self) -> None:
         self.decrease_quality()
@@ -58,7 +55,7 @@ class CommonItem(GildedRoseItem):
             self.decrease_quality()
 
 
-class AgedBrieItem(GildedRoseItem):
+class AgedBrieItem(Item):
 
     def update_quality(self) -> None:
         self.increase_quality()
@@ -66,7 +63,7 @@ class AgedBrieItem(GildedRoseItem):
             self.increase_quality()
 
 
-class BackstagePassesItem(GildedRoseItem):
+class BackstagePassesItem(Item):
 
     def update_quality(self) -> None:
         self.increase_quality()
@@ -78,7 +75,7 @@ class BackstagePassesItem(GildedRoseItem):
             self.quality = MIN_QUALITY
 
 
-class SulfurasItem(GildedRoseItem):
+class SulfurasItem(Item):
 
     def update_quality(self) -> None:
         return
@@ -87,7 +84,7 @@ class SulfurasItem(GildedRoseItem):
         return
 
 
-class ConjuredItem(GildedRoseItem):
+class ConjuredItem(Item):
 
     def update_quality(self) -> None:
         self.decrease_quality(amount=2)
