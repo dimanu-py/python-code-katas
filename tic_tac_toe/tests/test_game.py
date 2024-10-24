@@ -15,3 +15,10 @@ class TestGame:
         game = Game()
 
         expect(lambda: game.play(player="X")).not_to(raise_error(InvalidTurnError))
+
+    def test_player_cannot_play_twice_in_a_row(self):
+        game = Game()
+
+        game.play(player="X")
+
+        expect(lambda: game.play(player="X")).to(raise_error(InvalidTurnError))
