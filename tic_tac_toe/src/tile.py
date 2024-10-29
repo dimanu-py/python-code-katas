@@ -9,3 +9,6 @@ class Tile:
     CENTER_LEFT = "center_left"
     CENTER_CENTER = "center_center"
     CENTER_RIGHT = "center_right"
+    BOTTOM_LEFT = "bottom_left"
+    BOTTOM_CENTER = "bottom_center"
+    BOTTOM_RIGHT = "bottom_right"

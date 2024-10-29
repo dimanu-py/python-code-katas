@@ -69,3 +69,14 @@ class TestGame:
         winner = self.game.check_winner()
 
         expect(winner).to(equal(self.PLAYER_ONE))
+
+    def test_player_X_wins_when_marking_bottom_row(self):
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.BOTTOM_LEFT)
+        self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_LEFT)
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.BOTTOM_CENTER)
+        self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_CENTER)
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.BOTTOM_RIGHT)
+
+        winner = self.game.check_winner()
+
+        expect(winner).to(equal(self.PLAYER_ONE))
