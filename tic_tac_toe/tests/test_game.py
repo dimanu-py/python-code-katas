@@ -58,3 +58,14 @@ class TestGame:
         winner = self.game.check_winner()
 
         expect(winner).to(equal(self.PLAYER_ONE))
+
+    def test_player_X_wins_when_marking_center_row(self):
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.CENTER_LEFT)
+        self.game.play(player=self.PLAYER_TWO, tile=Tile.TOP_LEFT)
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.CENTER_CENTER)
+        self.game.play(player=self.PLAYER_TWO, tile=Tile.TOP_CENTER)
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.CENTER_RIGHT)
+
+        winner = self.game.check_winner()
+
+        expect(winner).to(equal(self.PLAYER_ONE))

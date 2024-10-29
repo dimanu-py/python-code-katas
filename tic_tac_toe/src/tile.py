@@ -8,3 +8,4 @@ class Tile:
     TOP_RIGHT = "top_right"
     CENTER_LEFT = "center_left"
     CENTER_CENTER = "center_center"
+    CENTER_RIGHT = "center_right"
