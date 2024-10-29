@@ -14,7 +14,7 @@ class Game:
         self.player_to_play = Player.O
         self.board = Board()
 
-    def play(self, player: str, tile: Tile) -> None:
+    def play(self, player: Player, tile: Tile) -> None:
         if player == self.player_to_play:
             raise InvalidTurnError(player)
 
