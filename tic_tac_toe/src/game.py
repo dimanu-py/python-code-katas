@@ -25,7 +25,7 @@ class Game:
         self.board.mark(tile, self.player_to_play)
 
     def check_winner(self) -> Player | None:
-        if self._top_row_is_marked():
+        if self._top_row_is_marked() or self._center_row_is_marked():
             return Player.X
         return None
 
@@ -34,3 +34,9 @@ class Game:
         top_center_tile_is_marked = self.board.is_marked_by(Tile.TOP_CENTER, Player.X)
         top_right_tile_is_marked = self.board.is_marked_by(Tile.TOP_RIGHT, Player.X)
         return top_center_tile_is_marked and top_left_tile_is_marked and top_right_tile_is_marked
+
+    def _center_row_is_marked(self) -> bool:
+        center_left_tile_is_marked = self.board.is_marked_by(Tile.CENTER_LEFT, Player.X)
+        center_center_tile_is_marked = self.board.is_marked_by(Tile.CENTER_CENTER, Player.X)
+        center_right_tile_is_marked = self.board.is_marked_by(Tile.CENTER_RIGHT, Player.X)
+        return center_left_tile_is_marked and center_center_tile_is_marked and center_right_tile_is_marked
