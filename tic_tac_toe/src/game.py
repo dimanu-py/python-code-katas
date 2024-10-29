@@ -18,12 +18,11 @@ class Game:
         if player == self.player_to_play:
             raise InvalidTurnError(player)
 
-        self.player_to_play = Player(player)
-
-        if self.board.is_marked(tile):
+        if self.board.is_marked_by(tile, self.player_to_play):
             raise AlreadyMarkedTileError(tile)
 
-        self.board.mark(tile)
+        self.player_to_play = Player(player)
+        self.board.mark(tile, self.player_to_play)
 
     def check_winner(self) -> Player:
         None
