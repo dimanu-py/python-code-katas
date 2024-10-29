@@ -1,6 +1,5 @@
-from typing import Set, Any
-
 from tic_tac_toe.src.already_marked_tile import AlreadyMarkedTileError
+from tic_tac_toe.src.board import Board
 from tic_tac_toe.src.invalid_turn import InvalidTurnError
 from tic_tac_toe.src.player import Player
 from tic_tac_toe.src.tile import Tile
@@ -9,11 +8,11 @@ from tic_tac_toe.src.tile import Tile
 class Game:
 
     player_to_play: Player
-    board: set[Tile]
+    board: Board
 
     def __init__(self) -> None:
-        self.board = set()
         self.player_to_play = Player.O
+        self.board = Board()
 
     def play(self, player: str, tile: Tile) -> None:
         if player == self.player_to_play:
@@ -21,7 +20,7 @@ class Game:
 
         self.player_to_play = Player(player)
 
-        if tile in self.board:
+        if self.board.is_marked(tile):
             raise AlreadyMarkedTileError(tile)
 
-        self.board.add(tile)
+        self.board.mark(tile)

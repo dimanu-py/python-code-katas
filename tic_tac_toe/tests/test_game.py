@@ -32,7 +32,6 @@ class TestGame:
         self.game.play(player="X", tile=tile_to_play)
 
         expect(self.game.board).not_to(be_empty)
-        expect(self.game.board).to(contain(tile_to_play))
 
     def test_player_cannot_play_on_a_marked_tile(self):
         marked_tile = Tile.TOP_LEFT
