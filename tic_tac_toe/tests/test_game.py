@@ -1,4 +1,4 @@
-from expects import expect, raise_error, be_empty, contain
+from expects import expect, raise_error, be_empty, contain, be_none
 
 from tic_tac_toe.src.already_marked_tile import AlreadyMarkedTileError
 from tic_tac_toe.src.game import Game
@@ -38,3 +38,8 @@ class TestGame:
         self.game.play(player="X", tile=marked_tile)
 
         expect(lambda: self.game.play(player="O", tile=marked_tile)).to(raise_error(AlreadyMarkedTileError))
+
+    def test_there_is_no_winner_if_nobody_scores_three_in_a_row(self):
+        winner = self.game.check_winner()
+
+        expect(winner).to(be_none)

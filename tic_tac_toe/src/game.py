@@ -24,3 +24,6 @@ class Game:
             raise AlreadyMarkedTileError(tile)
 
         self.board.mark(tile)
+
+    def check_winner(self) -> Player:
+        None
