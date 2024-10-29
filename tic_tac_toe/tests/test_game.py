@@ -1,4 +1,4 @@
-from expects import expect, raise_error, be_empty, contain, be_none
+from expects import expect, raise_error, be_empty, be_none, equal
 
 from tic_tac_toe.src.already_marked_tile import AlreadyMarkedTileError
 from tic_tac_toe.src.game import Game
@@ -48,13 +48,13 @@ class TestGame:
 
         expect(winner).to(be_none)
 
-    # def test_player_X_wins_when_marking_the_top_row(self):
-    #     self.game.play(player=self.PLAYER_ONE, tile=Tile.TOP_LEFT)
-    #     self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_LEFT)
-    #     self.game.play(player="X", tile=Tile.TOP_CENTER)
-    #     self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_CENTER)
-    #     self.game.play(player="X", tile=Tile.TOP_RIGHT)
-    #
-    #     winner = self.game.check_winner()
-    #
-    #     expect(winner).to(equal("X"))
+    def test_player_X_wins_when_marking_the_top_row(self):
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.TOP_LEFT)
+        self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_LEFT)
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.TOP_CENTER)
+        self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_CENTER)
+        self.game.play(player=self.PLAYER_ONE, tile=Tile.TOP_RIGHT)
+
+        winner = self.game.check_winner()
+
+        expect(winner).to(equal(self.PLAYER_ONE))
