@@ -55,7 +55,11 @@ class TestGame:
         ([(Player("X"), Tile.CENTER_LEFT), (Player("O"), Tile.TOP_LEFT), (Player("X"), Tile.CENTER_CENTER), (Player("O"), Tile.TOP_CENTER),
           (Player("X"), Tile.CENTER_RIGHT)], Player("X")),
         ([(Player("X"), Tile.BOTTOM_LEFT), (Player("O"), Tile.CENTER_LEFT), (Player("X"), Tile.BOTTOM_CENTER),
-          (Player("O"), Tile.CENTER_CENTER), (Player("X"), Tile.BOTTOM_RIGHT)], Player("X"))
+          (Player("O"), Tile.CENTER_CENTER), (Player("X"), Tile.BOTTOM_RIGHT)], Player("X")),
+        ([(Player("X"), Tile.TOP_LEFT), (Player("O"), Tile.TOP_CENTER), (Player("X"), Tile.CENTER_LEFT), (Player("O"), Tile.CENTER_CENTER),
+            (Player("X"), Tile.BOTTOM_LEFT)], Player("X")),
+        ([(Player("X"), Tile.TOP_LEFT), (Player("O"), Tile.CENTER_LEFT), (Player("X"), Tile.CENTER_CENTER), (Player("O"), Tile.TOP_CENTER),
+            (Player("X"), Tile.BOTTOM_RIGHT)], Player("X"))
     ])
     def test_player_one_wins(self, moves, expected_winner):
         for player, tile in moves:
