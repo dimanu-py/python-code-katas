@@ -10,7 +10,12 @@ class WinningPlays:
         self.possible_winning_conditions = [
             [Tile.TOP_RIGHT, Tile.TOP_CENTER, Tile.TOP_LEFT],
             [Tile.CENTER_RIGHT, Tile.CENTER_CENTER, Tile.CENTER_LEFT],
-            [Tile.BOTTOM_RIGHT, Tile.BOTTOM_CENTER, Tile.BOTTOM_LEFT]
+            [Tile.BOTTOM_RIGHT, Tile.BOTTOM_CENTER, Tile.BOTTOM_LEFT],
+            [Tile.TOP_LEFT, Tile.CENTER_LEFT, Tile.BOTTOM_LEFT],
+            [Tile.TOP_CENTER, Tile.CENTER_CENTER, Tile.BOTTOM_CENTER],
+            [Tile.TOP_RIGHT, Tile.CENTER_RIGHT, Tile.BOTTOM_RIGHT],
+            [Tile.TOP_LEFT, Tile.CENTER_CENTER, Tile.BOTTOM_RIGHT],
+            [Tile.TOP_RIGHT, Tile.CENTER_CENTER, Tile.BOTTOM_LEFT]
         ]
 
     def is_meet_by(self, player: Player) -> bool:
