@@ -84,3 +84,17 @@ class TestGame:
         winner = self.game.check_winner()
 
         expect(winner).to(equal(expected_winner))
+
+    def test_players_tie_when_board_is_full(self):
+        moves = [
+            (Player("X"), Tile.CENTER_CENTER), (Player("O"), Tile.TOP_LEFT), (Player("X"), Tile.TOP_CENTER),
+            (Player("O"), Tile.TOP_RIGHT), (Player("X"), Tile.CENTER_LEFT), (Player("O"), Tile.CENTER_RIGHT),
+            (Player("X"), Tile.BOTTOM_LEFT), (Player("O"), Tile.BOTTOM_CENTER), (Player("X"), Tile.BOTTOM_RIGHT)
+        ]
+
+        for player, tile in moves:
+            self.game.play(player=player, tile=tile)
+
+        winner = self.game.check_winner()
+
+        expect(winner).to(be_none)
