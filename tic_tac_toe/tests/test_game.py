@@ -1,3 +1,4 @@
+import pytest
 from expects import expect, raise_error, be_empty, be_none, equal
 
 from tic_tac_toe.src.already_marked_tile import AlreadyMarkedTileError
@@ -48,35 +49,18 @@ class TestGame:
 
         expect(winner).to(be_none)
 
-    def test_player_X_wins_when_marking_the_top_row(self):
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.TOP_LEFT)
-        self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_LEFT)
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.TOP_CENTER)
-        self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_CENTER)
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.TOP_RIGHT)
+    @pytest.mark.parametrize("moves, expected_winner", [
+        ([(Player("X"), Tile.TOP_LEFT), (Player("O"), Tile.CENTER_LEFT), (Player("X"), Tile.TOP_CENTER), (Player("O"), Tile.CENTER_CENTER),
+          (Player("X"), Tile.TOP_RIGHT)], Player("X")),
+        ([(Player("X"), Tile.CENTER_LEFT), (Player("O"), Tile.TOP_LEFT), (Player("X"), Tile.CENTER_CENTER), (Player("O"), Tile.TOP_CENTER),
+          (Player("X"), Tile.CENTER_RIGHT)], Player("X")),
+        ([(Player("X"), Tile.BOTTOM_LEFT), (Player("O"), Tile.CENTER_LEFT), (Player("X"), Tile.BOTTOM_CENTER),
+          (Player("O"), Tile.CENTER_CENTER), (Player("X"), Tile.BOTTOM_RIGHT)], Player("X"))
+    ])
+    def test_player_X_wins(self, moves, expected_winner):
+        for player, tile in moves:
+            self.game.play(player=player, tile=tile)
 
         winner = self.game.check_winner()
 
-        expect(winner).to(equal(self.PLAYER_ONE))
-
-    def test_player_X_wins_when_marking_center_row(self):
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.CENTER_LEFT)
-        self.game.play(player=self.PLAYER_TWO, tile=Tile.TOP_LEFT)
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.CENTER_CENTER)
-        self.game.play(player=self.PLAYER_TWO, tile=Tile.TOP_CENTER)
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.CENTER_RIGHT)
-
-        winner = self.game.check_winner()
-
-        expect(winner).to(equal(self.PLAYER_ONE))
-
-    def test_player_X_wins_when_marking_bottom_row(self):
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.BOTTOM_LEFT)
-        self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_LEFT)
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.BOTTOM_CENTER)
-        self.game.play(player=self.PLAYER_TWO, tile=Tile.CENTER_CENTER)
-        self.game.play(player=self.PLAYER_ONE, tile=Tile.BOTTOM_RIGHT)
-
-        winner = self.game.check_winner()
-
-        expect(winner).to(equal(self.PLAYER_ONE))
+        expect(winner).to(equal(expected_winner))
