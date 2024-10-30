@@ -27,6 +27,6 @@ class Game:
         self.board.mark(tile, self.player_to_play)
 
     def check_winner(self) -> Player | None:
-        if self.winning_plays.is_meet_by(Player.X):
-            return Player.X
+        if self.winning_plays.is_meet_by(self.player_to_play):
+            return self.player_to_play
         return None
