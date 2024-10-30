@@ -17,5 +17,5 @@ class Board:
     def mark(self, tile: Tile, player: Player) -> None:
         self.tiles[tile] = player
 
-    def is_marked_by(self, tile: Tile, player: Player) -> bool:
+    def is_marked_by(self, player: Player, tile: Tile) -> bool:
         return tile in self.tiles and self.tiles[tile] == player
