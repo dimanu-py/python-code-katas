@@ -3,6 +3,7 @@ from tic_tac_toe.src.board import Board
 from tic_tac_toe.src.invalid_turn import InvalidTurnError
 from tic_tac_toe.src.player import Player
 from tic_tac_toe.src.tile import Tile
+from tic_tac_toe.src.winning_plays import WinningPlays
 
 
 class Game:
@@ -13,6 +14,7 @@ class Game:
     def __init__(self) -> None:
         self.player_to_play = Player.O
         self.board = Board()
+        self.winning_plays = WinningPlays(self.board)
 
     def play(self, player: Player, tile: Tile) -> None:
         if player == self.player_to_play:
@@ -25,15 +27,6 @@ class Game:
         self.board.mark(tile, self.player_to_play)
 
     def check_winner(self) -> Player | None:
-        top_row_winning_condition = [Tile.TOP_RIGHT, Tile.TOP_CENTER, Tile.TOP_LEFT]
-        center_row_winning_condition = [Tile.CENTER_RIGHT, Tile.CENTER_CENTER, Tile.CENTER_LEFT]
-        bottom_row_winning_condition = [Tile.BOTTOM_RIGHT, Tile.BOTTOM_CENTER, Tile.BOTTOM_LEFT]
-
-        if self._player_x_has_marked(top_row_winning_condition) \
-                or self._player_x_has_marked(center_row_winning_condition) \
-                or self._player_x_has_marked(bottom_row_winning_condition):
+        if self.winning_plays.is_meet_by(Player.X):
             return Player.X
         return None
-
-    def _player_x_has_marked(self, tiles: list[Tile]) -> bool:
-        return all(self.board.is_marked_by(Player.X, tile) for tile in tiles)
