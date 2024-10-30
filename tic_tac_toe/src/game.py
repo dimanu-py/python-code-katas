@@ -25,18 +25,15 @@ class Game:
         self.board.mark(tile, self.player_to_play)
 
     def check_winner(self) -> Player | None:
-        if self._top_row_is_marked() or self._center_row_is_marked() or self._bottom_row_is_marked():
+        top_row_winning_condition = [Tile.TOP_RIGHT, Tile.TOP_CENTER, Tile.TOP_LEFT]
+        center_row_winning_condition = [Tile.CENTER_RIGHT, Tile.CENTER_CENTER, Tile.CENTER_LEFT]
+        bottom_row_winning_condition = [Tile.BOTTOM_RIGHT, Tile.BOTTOM_CENTER, Tile.BOTTOM_LEFT]
+
+        if self._player_x_has_marked(top_row_winning_condition) \
+                or self._player_x_has_marked(center_row_winning_condition) \
+                or self._player_x_has_marked(bottom_row_winning_condition):
             return Player.X
         return None
 
-    def _top_row_is_marked(self) -> bool:
-        top_row_winning_condition = [Tile.TOP_RIGHT, Tile.TOP_CENTER, Tile.TOP_LEFT]
-        return all(self.board.is_marked_by(tile, Player.X) for tile in top_row_winning_condition)
-
-    def _center_row_is_marked(self) -> bool:
-        center_row_winning_condition = [Tile.CENTER_RIGHT, Tile.CENTER_CENTER, Tile.CENTER_LEFT]
-        return all(self.board.is_marked_by(tile, Player.X) for tile in center_row_winning_condition)
-
-    def _bottom_row_is_marked(self) -> bool:
-        bottom_row_winning_condition = [Tile.BOTTOM_RIGHT, Tile.BOTTOM_CENTER, Tile.BOTTOM_LEFT]
-        return all(self.board.is_marked_by(tile, Player.X) for tile in bottom_row_winning_condition)
+    def _player_x_has_marked(self, tiles: list[Tile]) -> bool:
+        return all(self.board.is_marked_by(tile, Player.X) for tile in tiles)
