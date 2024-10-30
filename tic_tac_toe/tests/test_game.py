@@ -16,10 +16,10 @@ class TestGame:
     def setup_method(self):
         self.game = Game()
 
-    def test_player_O_cannot_play_first(self):
+    def test_player_two_cannot_play_first(self):
         expect(lambda: self.game.play(player=self.PLAYER_TWO, tile=Tile.TOP_LEFT)).to(raise_error(InvalidTurnError))
 
-    def test_player_X_starts_playing(self):
+    def test_player_one_starts_playing(self):
         expect(lambda: self.game.play(player=self.PLAYER_ONE, tile=Tile.TOP_LEFT)).not_to(raise_error(InvalidTurnError))
 
     def test_player_cannot_play_twice_in_a_row(self):
@@ -57,7 +57,7 @@ class TestGame:
         ([(Player("X"), Tile.BOTTOM_LEFT), (Player("O"), Tile.CENTER_LEFT), (Player("X"), Tile.BOTTOM_CENTER),
           (Player("O"), Tile.CENTER_CENTER), (Player("X"), Tile.BOTTOM_RIGHT)], Player("X"))
     ])
-    def test_player_X_wins(self, moves, expected_winner):
+    def test_player_one_wins(self, moves, expected_winner):
         for player, tile in moves:
             self.game.play(player=player, tile=tile)
 
