@@ -15,4 +15,4 @@ class TestBoard:
         board.mark(tile=tile_to_play, player=player)
 
         expect(board).not_to(be_empty)
-        expect(board.is_marked_by(tile=tile_to_play, player=player)).to(be_true)
+        expect(board.is_marked_by(player=player, tile=tile_to_play)).to(be_true)

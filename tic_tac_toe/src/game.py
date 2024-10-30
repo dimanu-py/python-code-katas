@@ -18,7 +18,7 @@ class Game:
         if player == self.player_to_play:
             raise InvalidTurnError(player)
 
-        if self.board.is_marked_by(tile, self.player_to_play):
+        if self.board.is_marked_by(self.player_to_play, tile):
             raise AlreadyMarkedTileError(tile)
 
         self.player_to_play = Player(player)
@@ -36,4 +36,4 @@ class Game:
         return None
 
     def _player_x_has_marked(self, tiles: list[Tile]) -> bool:
-        return all(self.board.is_marked_by(tile, Player.X) for tile in tiles)
+        return all(self.board.is_marked_by(Player.X, tile) for tile in tiles)
