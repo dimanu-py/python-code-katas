@@ -86,6 +86,7 @@ pdm run pytest tests/kata_name
 - [ ] [ATM Machine](atm/README.md)
 - [x] [Trip Service](trip_service/README.md)
 - [x] [Tic Tac Toe](tic_tac_toe/README.md)
+- [ ] [Ohce](ohce/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
 
