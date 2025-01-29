@@ -1,7 +1,7 @@
 # :snake: Python Code Katas :snake:
 
 > [!NOTE]
-> All the code katas are solved using Python. Most of the katas are configured in a similar way, using pdm as package manager and python 3.12.
+> All the code katas are solved using Python. Most of the katas are configured in a similar way, using uv as package manager and python 3.12.
 > Those katas that need extra or different configurations will have its specific instructions in the README file.
 
 [![Python](https://img.shields.io/badge/Python-3.12+-yellow?style=for-the-badge&logo=python&logoColor=white&labelColor=101010)](https://python.org)
@@ -27,7 +27,7 @@ The project can be configured either by using `pip` or `pyenv`. Both ways will b
     ```
 </details>
 
-<details><summary>Using pyenv and pdm</summary>
+<details><summary>Using pyenv and uv</summary>
 
 These instructions are extracted from pyenv documentation. You can find everything [here](https://github.com/pyenv/pyenv?tab=readme-ov-file)
 
@@ -46,13 +46,13 @@ These instructions are extracted from pyenv documentation. You can find everythi
 3. Select the python version you want to use:
     ```bash
     pyenv install 3.12
-    pyenv global 3.12
+    pyenv local 3.12
     ```
    
 4. Install the dependencies:
     ```bash
-    pip install pdm
-    pdm install
+    pip install uv
+    uv sync --all-groups
     ```
 </details>
 
@@ -67,7 +67,7 @@ pytest
 or
 
 ```bash
-pdm run pytest tests/kata_name
+uv run pytest kata_name/tests
 ```
 
 > [!NOTE]

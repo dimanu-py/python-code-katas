@@ -1,24 +1,13 @@
 [project]
 name = "python-code-katas"
 version = "0.1.0"
-description = "Default template for PDM package"
-authors = [
-    {name = "dimanu-py", email = "diegomtz126@gmail.com"},
-]
-dependencies = []
-requires-python = "==3.12.*"
+description = "A collection of Python code katas, with both solutions and descriptions."
 readme = "README.md"
-license = {text = "MIT"}
-
-
-[tool.pdm]
-distribution = false
-
-[tool.pdm.dev-dependencies]
-tests = [
-    "pytest>=8.3.3",
-    "expects>=0.9.0",
-    "approvaltests>=14.0.0",
+requires-python = ">=3.12"
+dependencies = [
+    "approvaltests>=14.3.0",
     "doublex>=1.9.6.1",
     "doublex-expects>=0.7.1",
+    "expects>=0.9.0",
+    "pytest>=8.3.4",
 ]
