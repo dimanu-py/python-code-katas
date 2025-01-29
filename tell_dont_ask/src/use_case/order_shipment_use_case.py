@@ -1,4 +1,3 @@
-from tell_dont_ask.src.domain.order_status import OrderStatus
 from tell_dont_ask.src.repository.order_repository import OrderRepository
 from tell_dont_ask.src.service.shipment_service import ShipmentService
 from tell_dont_ask.src.use_case.exceptions import OrderCannotBeShippedException, OrderCannotBeShippedTwiceException
@@ -13,13 +12,15 @@ class OrderShipmentUseCase:
     def run(self, request: OrderShipmentRequest) -> None:
         order = self._order_repository.get_by_id(request.order_id)
 
-        if order.status == OrderStatus.CREATED or order.status == OrderStatus.REJECTED:
-            raise OrderCannotBeShippedException()
-
-        if order.status == OrderStatus.SHIPPED:
-            raise OrderCannotBeShippedTwiceException()
-
+        self.validate_order_shipment(order)
         self._shipment_service.ship(order)
 
-        order.status = OrderStatus.SHIPPED
+        order.ship()
         self._order_repository.save(order)
+
+    @staticmethod
+    def validate_order_shipment(order: Order) -> None:
+        if order.is_created() or order.is_rejected():
+            raise OrderCannotBeShippedException()
+        if order.is_shipped():
+            raise OrderCannotBeShippedTwiceException()

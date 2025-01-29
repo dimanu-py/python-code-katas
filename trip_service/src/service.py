@@ -6,17 +6,16 @@ from trip_service.src.user_session import UserSession
 
 class TripService:
 
-    def get_trips_by_user(self, user: User) -> list[Trip]:
-        logged_user = UserSession.get_instance().get_logged_user()
-        is_friend = False
-        trip_list = []
-        if logged_user:
-          for friend in user.get_friends():
-            if friend is logged_user:
-              is_friend = True
-              break
-          if is_friend:
-            trip_list = TripRepository.find_trips_by_user(user)
-          return trip_list
-        else:
+    def __init__(self, repository: TripRepository) -> None:
+        self.repository = repository
+        self.no_trips = []
+
+    def get_trips_by_user(self, logged_user: User, requested_user: User) -> list[Trip]:
+        self._verify(logged_user)
+
+        return self.repository.find_trips_of(requested_user) if requested_user.is_friend_with(logged_user) else self.no_trips
+
+    @staticmethod
+    def _verify(logged_user: User) -> None:
+        if not logged_user:
             raise UserNotLoggedInException()

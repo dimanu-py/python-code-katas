@@ -6,10 +6,10 @@ help:  ## Show this help.
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $1, $2}'
 
 .PHONY: test
-test:
-	pdm run pytest $(kata)/tests
+test: ## Run tests
+	uv run pytest $(kata)/tests
 
-.PHONY: create-package
-create-package:
-	@read -p "Enter the kata name: " PACKAGE_NAME; \
-	python -m scripts.create_package $$PACKAGE_NAME
+.PHONY: create-kata
+create-kata: ## Create a new kata
+	@read -p "Enter the kata name: " KATA_NAME; \
+	python -m scripts.create_package $$KATA_NAME
