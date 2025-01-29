@@ -1,4 +1,4 @@
-from tell_dont_ask.src import ProductCatalog
+from tell_dont_ask.src.repository.product_catalog import ProductCatalog
 
 
 class InMemoryProductCatalog(ProductCatalog):

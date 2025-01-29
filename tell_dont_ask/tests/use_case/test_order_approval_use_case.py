@@ -1,8 +1,8 @@
 import pytest
 
-from tell_dont_ask.src.domain import Order
-from tell_dont_ask.src.domain import OrderStatus
-from tell_dont_ask.src import RejectedOrderCannotBeApprovedException, ApprovedOrderCannotBeRejectedException, \
+from tell_dont_ask.src.domain.order import Order
+from tell_dont_ask.src.domain.order_status import OrderStatus
+from tell_dont_ask.src.use_case.exceptions import RejectedOrderCannotBeApprovedException, ApprovedOrderCannotBeRejectedException, \
     ShippedOrdersCannotBeChangedException
 from tell_dont_ask.src.use_case.order_approval_request import OrderApprovalRequest
 from tell_dont_ask.src.use_case.order_approval_use_case import OrderApprovalUseCase

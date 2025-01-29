@@ -1,7 +1,7 @@
 import pytest
 
-from src.tell_dont_ask.domain.order import Order
-from src.tell_dont_ask.domain.order_status import OrderStatus
+from tell_dont_ask.src.domain.order import Order
+from tell_dont_ask.src.domain.order_status import OrderStatus
 
 
 @pytest.fixture
