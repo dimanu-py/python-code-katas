@@ -1,11 +1,11 @@
 import pytest
 
-from tell_dont_ask.initial_code.src.domain import Category
-from tell_dont_ask.initial_code.src.domain import OrderStatus
-from tell_dont_ask.initial_code.src.domain import Product
-from tell_dont_ask.initial_code.src import UnknownProductException
+from tell_dont_ask.initial_code.src.domain.category import Category
+from tell_dont_ask.initial_code.src.domain.order_status import OrderStatus
+from tell_dont_ask.initial_code.src.domain.product import Product
+from tell_dont_ask.initial_code.src.use_case.exceptions import UnknownProductException
 from tell_dont_ask.initial_code.src.use_case.order_creation_use_case import OrderCreationUseCase
-from tell_dont_ask.initial_code.src import SellItemsRequest, SellItemRequest
+from tell_dont_ask.initial_code.src.use_case.sell_item_request import SellItemsRequest, SellItemRequest
 from tell_dont_ask.initial_code.tests.doubles.in_memory_product_catalog import InMemoryProductCatalog
 from tell_dont_ask.initial_code.tests.doubles.stub_order_repository import StubOrderRepository
 

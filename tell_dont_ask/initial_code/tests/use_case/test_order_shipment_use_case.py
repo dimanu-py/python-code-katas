@@ -1,10 +1,10 @@
 import pytest
 
-from tell_dont_ask.initial_code.src.domain import Order
-from tell_dont_ask.initial_code.src.domain import OrderStatus
-from tell_dont_ask.initial_code.src import OrderCannotBeShippedException, OrderCannotBeShippedTwiceException
+from tell_dont_ask.initial_code.src.domain.order import Order
+from tell_dont_ask.initial_code.src.domain.order_status import OrderStatus
+from tell_dont_ask.initial_code.src.use_case.exceptions import OrderCannotBeShippedException, OrderCannotBeShippedTwiceException
 from tell_dont_ask.initial_code.src.use_case.order_shipment_request import OrderShipmentRequest
-from tell_dont_ask.initial_code.src import OrderShipmentUseCase
+from tell_dont_ask.initial_code.src.use_case.order_shipment_use_case import OrderShipmentUseCase
 from tell_dont_ask.initial_code.tests.doubles.stub_order_repository import StubOrderRepository
 from tell_dont_ask.initial_code.tests.doubles.stub_shipment_service import StubShipmentService
 
