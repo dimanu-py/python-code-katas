@@ -1,5 +1,5 @@
-from character_copier.src.destination import Destination
-from character_copier.src.source import Source
+from character_copier.initial_code.src.destination import Destination
+from character_copier.initial_code.src.source import Source
 
 
 class Copier:

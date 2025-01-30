@@ -48,7 +48,7 @@ These instructions are extracted from pyenv documentation. You can find everythi
     pyenv install 3.12
     pyenv local 3.12
     ```
-   
+
 4. Install the dependencies:
     ```bash
     pip install uv
@@ -75,17 +75,17 @@ uv run pytest kata_name/tests
 
 ## Katas
 
-- [x] [FizzBuzz](solutions/fizz_buzz/README.md)
-- [x] [Leap Year](solutions/leap_year/README.md)
-- [x] [Gilded Rose Refactoring](solutions/gilded_rose/README.md)
-- [x] [Parallel Change Refactoring](solutions/parallel_change/README.md)
-- [x] [Tire Pressure](solutions/tire_pressure/README.md)
-- [x] [Tell Don't Ask](solutions/tell_dont_ask/README.md)
+- [x] [FizzBuzz](fizz_buzz/README.md)
+- [x] [Leap Year](leap_year/README.md)
+- [x] [Gilded Rose Refactoring](gilded_rose/README.md)
+- [x] [Parallel Change Refactoring](parallel_change/README.md)
+- [x] [Tire Pressure](tire_pressure/README.md)
+- [x] [Tell Don't Ask](tell_dont_ask/README.md)
 - [ ] [Character Copier](character_copier/README.md)
 - [ ] [Bags](bags/README.md)
 - [ ] [ATM Machine](atm/README.md)
-- [x] [Trip Service](solutions/trip_service/README.md)
-- [x] [Tic Tac Toe](solutions/tic_tac_toe/README.md)
+- [x] [Trip Service](trip_service/README.md)
+- [x] [Tic Tac Toe](tic_tac_toe/README.md)
 - [ ] [Ohce](ohce/README.md)
 
 ## Visit my GitHub profile for more projects 🚀
