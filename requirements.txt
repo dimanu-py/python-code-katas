@@ -1,2 +1,5 @@
 pytest
 expects
+doublex
+doublex-expects
+approvaltests

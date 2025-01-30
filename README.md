@@ -48,7 +48,7 @@ These instructions are extracted from pyenv documentation. You can find everythi
     pyenv install 3.12
     pyenv local 3.12
     ```
-   
+
 4. Install the dependencies:
     ```bash
     pip install uv

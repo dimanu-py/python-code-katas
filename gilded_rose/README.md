@@ -13,7 +13,7 @@ our function and compare the output with the expected value. If the output is di
 fails.
 
 As I use PyCharm as my main IDE, I have a custom reporter that uses IDE's diff tool to show me the output file. You can use it
-by changing the path inside [conftest.py](tests/conftest.py) file.
+by changing the path inside [conftest.py](initial_code/tests/conftest.py) file.
 
 ## Description
 
